@@ -21,8 +21,8 @@ flowchart TD
 
     subgraph Sistem_Si_Banka ["Sistem Si-Banka"]
         S1[Validasi Data]
-        S2[Kalkulasi Nilai Rupiah\n(Berat x Harga Kategori)]
-        S3[(Simpan Data Transaksi &\nUpdate Saldo Nasabah)]
+        S2["Kalkulasi Nilai Rupiah\n(Berat x Harga Kategori)"]
+        S3[("Simpan Data Transaksi &\nUpdate Saldo Nasabah")]
         S4[Tampilkan Notifikasi Berhasil]
     end
 

@@ -37,12 +37,12 @@ flowchart TD
 
     subgraph Sistem_Si_Banka ["SISTEM SI-BANKA"]
         direction TB
-        S_Akun[(Simpan Data Akun & Generate ID)]:::sys
-        S_Kalkulasi[Kalkulasi Rupiah (Berat x Nilai)]:::sys
-        S_TxIn[(Update Saldo [+] & Simpan Setoran)]:::sys
-        S_Dash[Tampilkan Informasi Saldo & Riwayat]:::sys
-        S_TxOut[(Update Saldo [-] & Simpan Tarikan)]:::sys
-        S_GenPDF[Kompilasi Data Transaksi (PDF/Excel)]:::sys
+        S_Akun[("Simpan Data Akun & Generate ID")]:::sys
+        S_Kalkulasi["Kalkulasi Rupiah (Berat x Nilai)"]:::sys
+        S_TxIn[("Update Saldo [+] & Simpan Setoran")]:::sys
+        S_Dash["Tampilkan Informasi Saldo & Riwayat"]:::sys
+        S_TxOut[("Update Saldo [-] & Simpan Tarikan")]:::sys
+        S_GenPDF["Kompilasi Data Transaksi (PDF/Excel)"]:::sys
     end
 
     %% ALUR PENDAFTARAN %%
