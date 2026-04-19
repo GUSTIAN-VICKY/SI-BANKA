@@ -1,0 +1,172 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ═══════════════════════════════════════════════════
+   1. CSS VARIABLES (Design Tokens)
+   ═══════════════════════════════════════════════════ */
+
+:root {
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+}
+
+/* ═══════════════════════════════════════════════════
+   2. BASE STYLES (Reset & Typography)
+   ═══════════════════════════════════════════════════ */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Outfit', sans-serif;
+  background-color: #f8fafc;
+  color: #1e293b;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* ═══════════════════════════════════════════════════
+   3. AURORA BACKGROUND (Animated Gradient)
+   ═══════════════════════════════════════════════════ */
+
+body::before,
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: none;
+}
+
+body::before {
+  background:
+    radial-gradient(at 0% 0%, rgba(37, 99, 235, 0.9) 0px, transparent 50%),
+    radial-gradient(at 50% 0%, rgba(6, 182, 212, 0.8) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(59, 130, 246, 0.9) 0px, transparent 50%);
+  filter: blur(80px);
+  animation: aurora-move-1 20s infinite alternate linear;
+}
+
+body::after {
+  background:
+    radial-gradient(at 0% 100%, rgba(14, 165, 233, 0.8) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(30, 64, 175, 0.8) 0px, transparent 50%),
+    radial-gradient(at 50% 50%, rgba(96, 165, 250, 0.8) 0px, transparent 50%);
+  filter: blur(60px);
+  animation: aurora-move-2 25s infinite alternate-reverse linear;
+}
+
+@keyframes aurora-move-1 {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(5%, 5%) scale(1.1); }
+}
+
+@keyframes aurora-move-2 {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(-5%, -5%) scale(1.05); }
+}
+
+/* ═══════════════════════════════════════════════════
+   4. GLASSMORPHISM UTILITIES
+   ═══════════════════════════════════════════════════ */
+
+/* Base glass effect — generic transparent panel */
+.glass {
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+}
+
+/* Glass card — used for dashboard cards, stat panels, content areas */
+.glass-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 10px 30px rgba(30, 58, 138, 0.15);
+  border-radius: 24px;
+}
+
+/* ═══════════════════════════════════════════════════
+   5. SCROLLBAR
+   ═══════════════════════════════════════════════════ */
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #10b981, #14b8a6);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #059669, #0d9488);
+}
+
+/* ═══════════════════════════════════════════════════
+   6. FORM ELEMENTS
+   ═══════════════════════════════════════════════════ */
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+}
+
+::placeholder {
+  color: #94a3b8;
+  opacity: 1;
+}
+
+button:disabled,
+input:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* ═══════════════════════════════════════════════════
+   7. SELECTION
+   ═══════════════════════════════════════════════════ */
+
+::selection {
+  background: rgba(16, 185, 129, 0.3);
+  color: #064e3b;
+}
+
+/* ═══════════════════════════════════════════════════
+   8. RESPONSIVE TYPOGRAPHY
+   ═══════════════════════════════════════════════════ */
+
+@media (max-width: 640px) {
+  html { font-size: 14px; }
+}
+
+@media (min-width: 1536px) {
+  html { font-size: 18px; }
+}
