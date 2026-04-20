@@ -1,76 +1,71 @@
 # SWIMLANE FLOWCHART: SI-BANKA
+**Alur Kerja Terintegrasi Admin RT & Nasabah**
 
-Berikut adalah diagram flowchart dengan format *swimlane* yang menggambarkan alur kerja aplikasi Si-Banka secara menyeluruh. Diagram ini dapat Anda jadikan referensi untuk penyusunan dokumen di Visio atau laporan proyek.
+Berikut adalah diagram flowchart dengan format *swimlane* yang telah diperbarui sesuai dengan logika aplikasi: **Nasabah didaftarkan secara kolektif oleh Admin RT**, bukan mendaftar sendiri, untuk memastikan validitas data warga di lingkungan tersebut.
 
 ```mermaid
 graph TB
     subgraph Nasabah_Warga ["NASABAH (WARGA)"]
-        N1([Mulai]) --> N2[Registrasi Akun]
-        N2 --> N3[Akses Link Verifikasi Email]
-        N8[Cek Saldo & Riwayat]
-        N9([Selesai])
+        N1([Mulai]) --> N2[Menerima Akun dari Admin]
+        N2 --> N3[Login ke Dashboard Nasabah]
+        N3 --> N4[Cek Saldo & Riwayat Menabung]
+        N4 --> N5([Selesai])
     end
 
     subgraph Admin_RT ["ADMIN RT (OPERATOR)"]
-        A1[Login ke Sistem]
-        A2[Manajemen Data Nasabah]
-        A3[Input Transaksi Sampah]
-        A4[Atur Harga Sampah]
-        A5[Lihat Laporan & Statistik]
+        A1[Login ke Sistem Admin]
+        A2[Registrasi/Tambah Nasabah Baru]
+        A3[Input Setoran Sampah Nasabah]
+        A4[Update Harga & Cek Laporan RT]
     end
 
     subgraph Sistem_Backend ["SISTEM (FRONTEND & BACKEND)"]
         S1{Validasi Data}
-        S2[Kirim Email Verifikasi]
-        S3{Auth Berhasil?}
+        S2[Simpan Data & Buat Akun Otomatis]
+        S3[Kalkulasi Saldo Berdasarkan Harga]
         S4[(Database Si-Banka)]
-        S5[Kalkulasi Saldo Otomatis]
-        S6[Generate Grafik Distribusi]
     end
 
-    %% Flow Alur Pendaftaran
-    N2 --> S1
+    %% Flow Alur Pendaftaran Nasabah oleh Admin
+    A1 --> S4
+    S4 --> A2
+    A2 --> S1
     S1 -- Valid --> S2
-    S2 --> N3
-    N3 --> S4
+    S2 --> S4
+    S2 -. "Notifikasi Akun" .-> N2
 
-    %% Flow Alur Login
-    A1 --> S3
-    S3 -- Yes --> A2
-    S3 -- Yes --> A5
+    %% Flow Alur Transaksi & Tabungan
+    A3 --> S3
+    S3 --> S4
+    S4 --> N4
 
-    %% Flow Alur Transaksi
-    A2 --> A3
-    A3 --> S5
-    S5 --> S4
-    S4 --> N8
-    N8 --> N9
-
-    %% Flow Alur Statistik
+    %% Flow Pengaturan
     A4 --> S4
-    S4 --> S6
-    S6 --> A5
 
     style N1 fill:#f9f,stroke:#333,stroke-width:2px
-    style N9 fill:#f9f,stroke:#333,stroke-width:2px
+    style N5 fill:#f9f,stroke:#333,stroke-width:2px
     style S4 fill:#00d2ff,stroke:#333,stroke-width:2px
 ```
 
 ---
 
-## Penjelasan Jalur (Swimlane)
+## Penjelasan Jalur (Swimlane) yang Diperbarui
 
 ### 1. Jalur Nasabah (Warga)
-*   **Registrasi**: User mendaftarkan unit Bank Sampah atau akun nasabah.
-*   **Verifikasi**: Melakukan aktivasi melalui email yang dikirimkan sistem.
-*   **Monitoring**: Mengakses dashboard pribadi untuk melihat perkembangan tabungan sampah.
+*   **Penerimaan Akun**: Nasabah tidak mendaftar sendiri. Mereka menerima kredensial (username/password) dari Admin RT setempat.
+*   **Monitoring**: Nasabah menggunakan akun tersebut untuk masuk ke dashboard khusus guna memantau jumlah tabungan dan berat sampah yang telah dikontribusikan.
 
 ### 2. Jalur Admin RT (Operator)
-*   **Pengelolaan**: Orang yang memiliki hak akses penuh terhadap unit Bank Sampah RT tertentu.
-*   **Operasional**: Melakukan input data sampah (berat, jenis) yang dibawa nasabah.
-*   **Manajemen**: Mengatur harga beli sampah per kilogram agar saldo nasabah terhitung otomatis.
+*   **Registrasi Nasabah**: Admin RT bertanggung jawab melakukan *input* data warga ke dalam sistem. Sistem secara otomatis akan men-generate akun login untuk setiap nasabah yang didaftarkan.
+*   **Pencatatan Transaksi**: Admin melakukan input berat sampah setiap kali nasabah datang menyetor.
+*   **Penetapan Harga**: Admin mengatur harga beli sampah per item (plastik, kertas, dll) yang menjadi dasar perhitungan saldo nasabah.
 
 ### 3. Jalur Sistem (Sistem & Backend)
-*   **Validasi**: Memastikan data RT/RW tidak duplikat dan email valid.
-*   **Automasi**: Melakukan perhitungan `Berat x Harga = Saldo` tanpa campur tangan manual untuk menghindari kesalahan.
-*   **Penyimpanan**: Mengelola database terpusat agar data nasabah aman dan terisolasi per unit RT.
+*   **Automasi Akun**: Saat Admin menambah nasabah, sistem langsung membuatkan record User di database dengan role `nasabah`.
+*   **Integrasi Data**: Menjamin saldo nasabah selalu *up-to-date* setiap kali ada transaksi baru yang di-input oleh Admin.
+*   **Isolasi Data**: Memastikan data Nasabah RT 01 tidak akan terlihat oleh Admin RT 02 (Sistem Multi-tenant).
+
+---
+
+> [!TIP]
+> Perubahan ini memastikan bahwa proses administrasi tetap terpusat di tangan Admin RT, menjaga keamanan data lingkungan, dan memudahkan warga (nasabah) karena mereka tinggal menggunakan akun yang sudah disediakan.

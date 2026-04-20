@@ -59,8 +59,9 @@ Menampilkan ringkasan unit Bank Sampah lokal:
 - **Stok Sampah**: Berat sampah yang tersimpan di gudang sebelum dijual ke pengepul.
 
 ### B. Manajemen Nasabah
-- Fitur untuk menambah nasabah baru di wilayah RT tersebut.
-- Penentuan alamat otomatis berdasarkan unit Bank Sampah yang dikelola.
+- **Registrasi Kolektif**: Admin RT bertanggung jawab mendaftarkan warga sebagai nasabah.
+- **Pembuatan Akun Otomatis**: Sistem secara otomatis akan men-generate akun (username & password) untuk nasabah saat Admin melakukan pendaftaran.
+- **Penentuan Alamat**: Alamat nasabah otomatis terhubung dengan unit Bank Sampah pengelola.
 
 ### C. Transaksi Setoran
 - Pencatatan sampah masuk (Plastik, Kertas, Logam, dll).
