@@ -4,6 +4,7 @@ import { Plus, X, Package, CheckCircle, Loader2, Save, Trash2, Camera, Image as 
 import { formatCurrency } from '../../utils/formatters';
 import { compressImage } from '../../utils/imageUtils';
 import { CameraCaptureModal } from './CameraCaptureModal';
+import { useModalClose } from '../../hooks/useModalClose';
 
 export function EditTransactionModal({
     transaction,
@@ -14,6 +15,8 @@ export function EditTransactionModal({
     geminiLoading,
     error
 }) {
+    useModalClose(onClose);
+
     // Initialize Cart and State from Transaction
     const [cart, setCart] = useState([]);
     const [wasteId, setWasteId] = useState(wasteTypes.length > 0 ? wasteTypes[0].id : '');
@@ -118,7 +121,10 @@ export function EditTransactionModal({
     };
 
     return createPortal(
-        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-[100] animate-fadeIn p-4">
+        <div 
+            onClick={onClose}
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-[100] animate-fadeIn p-4"
+        >
             {/* Camera Capture Modal */}
             {showCameraModal && (
                 <CameraCaptureModal
@@ -131,7 +137,10 @@ export function EditTransactionModal({
             )}
 
             {/* Modal Container */}
-            <div className={`bg-white w-full h-full shadow-2xl flex flex-col md:flex-row overflow-hidden animate-slideUp relative ${!isMobile ? 'md:w-auto md:max-w-5xl md:h-[85vh] md:rounded-3xl' : ''}`}>
+            <div 
+                onClick={(e) => e.stopPropagation()}
+                className={`bg-white w-full h-full shadow-2xl flex flex-col md:flex-row overflow-hidden animate-slideUp relative ${!isMobile ? 'md:w-auto md:max-w-5xl md:h-[85vh] md:rounded-3xl' : ''}`}
+            >
 
                 {/* Close Button Mobile */}
                 <button onClick={onClose} className="absolute right-4 top-4 md:hidden bg-slate-100/50 p-2 rounded-full z-20 text-slate-500 hover:text-red-500 hover:bg-red-50 transition-colors backdrop-blur-sm"><X size={20} /></button>

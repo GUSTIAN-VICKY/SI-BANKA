@@ -1,10 +1,15 @@
 import React, { useState, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { X, Upload, Camera, User, Mail, Lock, Loader2, AlertCircle, Shield, Users } from 'lucide-react';
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from 'framer-motion';
 import { CameraCaptureModal } from './CameraCaptureModal';
 
+import { useModalClose } from '../../hooks/useModalClose';
+
 export function AddUserModal({ onClose, onAddUser, isLoading, error, initialData, customers = [] }) {
+    useModalClose(onClose);
+
     const [formData, setFormData] = useState({
         name: initialData?.name || '',
         email: initialData?.email || '',
@@ -51,7 +56,7 @@ export function AddUserModal({ onClose, onAddUser, isLoading, error, initialData
             setValidationError("Password wajib diisi untuk user baru.");
             return;
         }
-        if (formData.password && formData.password.length < 8) {
+        if (formData.password && formData.password.length > 0 && formData.password.length < 8) {
             setValidationError("Password minimal 8 karakter.");
             return;
         }
@@ -62,16 +67,21 @@ export function AddUserModal({ onClose, onAddUser, isLoading, error, initialData
         }
     };
 
-    return (
+    return createPortal(
         <AnimatePresence>
-            <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
+            <div 
+                onClick={onClose}
+                className="fixed inset-0 bg-gradient-to-br from-slate-900/80 via-slate-900/70 to-emerald-900/50 backdrop-blur-md flex items-center justify-center z-[100] p-4 sm:p-6 md:p-8"
+            >
                 <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.95 }}
-                    className="bg-white rounded-3xl shadow-2xl w-full max-w-lg overflow-hidden relative"
+                    onClick={(e) => e.stopPropagation()}
+                    initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.95, y: 20 }}
+                    className="bg-white rounded-3xl shadow-2xl w-full max-w-lg max-h-[95vh] sm:max-h-[90vh] flex flex-col overflow-hidden relative"
                 >
-                    <div className="p-6 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">
+                    {/* Header */}
+                    <div className="p-5 sm:p-6 border-b border-slate-100 flex justify-between items-center bg-slate-50/50 flex-shrink-0">
                         <h2 className="text-xl font-bold text-slate-800 flex items-center gap-2">
                             <div className="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600">
                                 <User size={18} />
@@ -83,7 +93,8 @@ export function AddUserModal({ onClose, onAddUser, isLoading, error, initialData
                         </button>
                     </div>
 
-                    <div className="p-6">
+                    {/* Scrollable Content */}
+                    <div className="flex-1 overflow-y-auto p-5 sm:p-6 custom-scrollbar">
                         {error && (
                             <div className="mb-4 p-3 bg-red-50 text-red-600 rounded-xl text-sm flex items-center gap-2 border border-red-100">
                                 <AlertCircle size={16} />
@@ -97,7 +108,7 @@ export function AddUserModal({ onClose, onAddUser, isLoading, error, initialData
                             </div>
                         )}
 
-                        <form onSubmit={handleSubmit} className="space-y-4">
+                        <form id="addUserForm" onSubmit={handleSubmit} className="space-y-4">
                             {/* Photo Upload */}
                             <div className="flex justify-center mb-6">
                                 <div className="relative group">
@@ -177,7 +188,7 @@ export function AddUserModal({ onClose, onAddUser, isLoading, error, initialData
                                             value={formData.password}
                                             onChange={handleChange}
                                             className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition-all"
-                                            placeholder="Minimal 8 karakter"
+                                            placeholder={initialData ? "Kosongkan jika tidak ingin diubah" : "Minimal 8 karakter"}
                                         />
                                     </div>
                                 </div>
@@ -213,11 +224,9 @@ export function AddUserModal({ onClose, onAddUser, isLoading, error, initialData
                                         ? 'Akses penuh ke semua bank sampah + kelola user.'
                                         : formData.role === 'admin_kota'
                                             ? 'Lihat semua data, tidak bisa kelola user.'
-                                            : formData.role === 'super_admin_rt'
-                                                ? 'Kelola 1 bank sampah + user di RT tersebut.'
-                                                : ['admin_rt', 'admin'].includes(formData.role)
-                                                    ? 'CRUD nasabah & transaksi di 1 bank sampah.'
-                                                    : 'Hanya bisa melihat data transaksi pribadi.'}
+                                            : ['super_admin_rt', 'admin_rt', 'admin'].includes(formData.role)
+                                                ? 'Kelola 1 bank sampah (Super=User, Biasa=Transaksi).'
+                                                : 'Hanya bisa melihat data transaksi pribadi.'}
                                 </p>
                             </div>
 
@@ -247,24 +256,28 @@ export function AddUserModal({ onClose, onAddUser, isLoading, error, initialData
                                     </p>
                                 </div>
                             )}
-
-                            <div className="pt-4 flex gap-3">
-                                <button
-                                    type="button"
-                                    onClick={onClose}
-                                    className="flex-1 py-2.5 text-slate-600 font-medium hover:bg-slate-100 rounded-xl transition-colors"
-                                >
-                                    Batal
-                                </button>
-                                <button
-                                    type="submit"
-                                    disabled={isLoading}
-                                    className="flex-1 py-2.5 bg-emerald-500 hover:bg-emerald-600 text-white font-medium rounded-xl shadow-lg shadow-emerald-500/20 transition-all active:scale-95 disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-                                >
-                                    {isLoading ? <Loader2 className="animate-spin" size={18} /> : 'Simpan User'}
-                                </button>
-                            </div>
                         </form>
+                    </div>
+
+                    {/* Fixed Bottom Submit Button */}
+                    <div className="p-4 sm:p-5 border-t border-slate-100 bg-white flex-shrink-0">
+                        <div className="flex gap-3">
+                            <button
+                                type="button"
+                                onClick={onClose}
+                                className="flex-1 py-3.5 text-slate-600 font-medium hover:bg-slate-100 rounded-xl transition-colors"
+                            >
+                                Batal
+                            </button>
+                            <button
+                                type="submit"
+                                form="addUserForm"
+                                disabled={isLoading}
+                                className="flex-1 py-3.5 bg-emerald-500 hover:bg-emerald-600 text-white font-medium rounded-xl shadow-lg shadow-emerald-500/20 transition-all active:scale-95 disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                            >
+                                {isLoading ? <Loader2 className="animate-spin" size={18} /> : 'Simpan User'}
+                            </button>
+                        </div>
                     </div>
                 </motion.div>
             </div>
@@ -275,6 +288,7 @@ export function AddUserModal({ onClose, onAddUser, isLoading, error, initialData
                     onClose={() => setShowCamera(false)}
                 />
             )}
-        </AnimatePresence>
+        </AnimatePresence>,
+        document.body
     );
 }

@@ -2,8 +2,11 @@ import React, { useEffect } from 'react';
 import { PartyPopper } from 'lucide-react';
 import { formatCurrency } from '../../utils/formatters';
 import { notifyNewTransaction } from '../../utils/notifications';
+import { useModalClose } from '../../hooks/useModalClose';
 
 export function TransactionSuccessModal({ successData, onClose }) {
+  useModalClose(onClose);
+
   // Trigger browser notification when this modal opens
   useEffect(() => {
     if (successData) {
@@ -13,8 +16,14 @@ export function TransactionSuccessModal({ successData, onClose }) {
 
   if (!successData) return null;
   return (
-    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-end md:items-center justify-center z-[100] animate-fadeIn p-4 md:p-0">
-      <div className="bg-white w-full md:max-w-md rounded-t-3xl md:rounded-3xl shadow-2xl p-6 pt-10 animate-slideUp md:animate-fadeIn relative text-center">
+    <div 
+        onClick={onClose}
+        className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-end md:items-center justify-center z-[100] animate-fadeIn p-4 md:p-0"
+    >
+      <div 
+        onClick={(e) => e.stopPropagation()}
+        className="bg-white w-full md:max-w-md rounded-t-3xl md:rounded-3xl shadow-2xl p-6 pt-10 animate-slideUp md:animate-fadeIn relative text-center"
+      >
         <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4 mx-auto ring-4 ring-green-50">
           <PartyPopper size={32} className="text-green-600" />
         </div>

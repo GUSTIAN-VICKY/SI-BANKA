@@ -27,7 +27,7 @@ const BankSampahManagement = ({ currentUser }) => {
             });
             if (!response.ok) throw new Error('Failed to fetch');
             const data = await response.json();
-            setBankSampahList(data);
+            setBankSampahList(data.data || data);
         } catch (err) {
             setError(err.message);
         } finally {

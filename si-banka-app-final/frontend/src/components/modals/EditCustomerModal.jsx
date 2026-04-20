@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { X, MapPin, Save, Loader2, User, Building2, ChevronDown } from 'lucide-react';
+import { useModalClose } from '../../hooks/useModalClose';
 
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api';
 
 export function EditCustomerModal({ customer, onClose, onSuccess }) {
+    useModalClose(onClose);
+
     const [alamat, setAlamat] = useState(customer?.alamat || '');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -69,8 +72,14 @@ export function EditCustomerModal({ customer, onClose, onSuccess }) {
     const uniqueAddresses = [...new Set(bankSampahList.filter(bs => bs.alamat).map(bs => bs.alamat))];
 
     return createPortal(
-        <div className="fixed inset-0 bg-gradient-to-br from-slate-900/80 via-slate-900/70 to-blue-900/50 backdrop-blur-md flex items-center justify-center z-[100] p-4 animate-fadeIn">
-            <div className="bg-white w-full max-w-md rounded-3xl shadow-2xl flex flex-col overflow-hidden animate-slideUp">
+        <div 
+            onClick={onClose}
+            className="fixed inset-0 bg-gradient-to-br from-slate-900/80 via-slate-900/70 to-blue-900/50 backdrop-blur-md flex items-center justify-center z-[100] p-4 animate-fadeIn"
+        >
+            <div 
+                onClick={(e) => e.stopPropagation()}
+                className="bg-white w-full max-w-md rounded-3xl shadow-2xl flex flex-col overflow-hidden animate-slideUp"
+            >
                 {/* Gradient Header */}
                 <div className="bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 p-5 relative overflow-hidden flex-shrink-0">
                     <div className="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none" />
@@ -120,7 +129,7 @@ export function EditCustomerModal({ customer, onClose, onSuccess }) {
                     <form onSubmit={handleSubmit} className="space-y-4">
                         {/* Alamat Dropdown */}
                         <div>
-                            <label className="block text-sm font-bold text-slate-700 mb-2 flex items-center gap-2">
+                            <label className="text-sm font-bold text-slate-700 mb-2 flex items-center gap-2">
                                 <Building2 size={14} className="text-blue-500" />
                                 Pilih Alamat Bank Sampah
                             </label>

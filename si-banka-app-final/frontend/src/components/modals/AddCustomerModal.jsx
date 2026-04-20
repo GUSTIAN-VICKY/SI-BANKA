@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom';
 import { X, UserPlus, Loader2, Camera, Image as ImageIcon, Lock, CheckCircle, MapPin, Building2, ChevronDown, Sparkles, Shield, User } from 'lucide-react';
 import { CameraCaptureModal } from './CameraCaptureModal';
 import { compressImage } from '../../utils/imageUtils';
+import { useModalClose } from '../../hooks/useModalClose';
 
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api';
 
@@ -97,8 +98,13 @@ export function AddCustomerModal({ setShowAddCustomerModal, handleAddCustomer, g
         catch (e) { /* Error handled by parent */ }
     };
 
+    useModalClose(() => setShowAddCustomerModal(false));
+
     return createPortal(
-        <div className="fixed inset-0 bg-gradient-to-br from-slate-900/80 via-slate-900/70 to-emerald-900/50 backdrop-blur-md flex items-center justify-center z-[100] p-4 sm:p-6 md:p-8 animate-fadeIn">
+        <div 
+            onClick={() => setShowAddCustomerModal(false)}
+            className="fixed inset-0 bg-gradient-to-br from-slate-900/80 via-slate-900/70 to-emerald-900/50 backdrop-blur-md flex items-center justify-center z-[100] p-4 sm:p-6 md:p-8 animate-fadeIn"
+        >
             {showCameraModal && (
                 <CameraCaptureModal
                     onClose={() => setShowCameraModal(false)}
@@ -107,20 +113,16 @@ export function AddCustomerModal({ setShowAddCustomerModal, handleAddCustomer, g
             )}
 
             {/* Modal Container - Fully Responsive */}
-            <div className="bg-white w-full max-w-xl max-h-[95vh] sm:max-h-[90vh] rounded-3xl shadow-2xl flex flex-col overflow-hidden animate-slideUp relative">
+            <div 
+                onClick={(e) => e.stopPropagation()}
+                className="bg-white w-full max-w-xl max-h-[95vh] sm:max-h-[90vh] rounded-3xl shadow-2xl flex flex-col overflow-hidden animate-slideUp relative"
+            >
 
                 {/* Gradient Header */}
-                <div className="bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 p-5 sm:p-6 relative overflow-hidden flex-shrink-0">
+                <div className="bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 p-5 sm:p-6 relative overflow-hidden flex-shrink-0 flex justify-between items-start">
                     {/* Decorative Elements */}
                     <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none" />
                     <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/5 rounded-full translate-y-1/2 -translate-x-1/2 pointer-events-none" />
-
-                    <button
-                        onClick={() => setShowAddCustomerModal(false)}
-                        className="absolute right-4 top-4 z-10 text-white/80 hover:text-white bg-white/20 hover:bg-white/30 rounded-full p-2 transition-all backdrop-blur-sm"
-                    >
-                        <X size={20} />
-                    </button>
 
                     <div className="flex items-center gap-4 relative z-10">
                         <div className="w-14 h-14 sm:w-16 sm:h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center shadow-lg">
@@ -134,6 +136,14 @@ export function AddCustomerModal({ setShowAddCustomerModal, handleAddCustomer, g
                             <p className="text-white/80 text-sm sm:text-base">Tambahkan data diri nasabah</p>
                         </div>
                     </div>
+
+                    <button
+                        type="button"
+                        onClick={() => setShowAddCustomerModal(false)}
+                        className="relative z-10 text-white/80 hover:text-white hover:bg-white/20 bg-white/10 rounded-full p-2 transition-all backdrop-blur-sm -mt-2 -mr-2 shadow-sm"
+                    >
+                        <X size={20} />
+                    </button>
                 </div >
 
                 {/* Scrollable Form Content */}

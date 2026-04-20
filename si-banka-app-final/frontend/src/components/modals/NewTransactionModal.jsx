@@ -4,6 +4,7 @@ import { Search, ScanLine, Plus, X, Package, CheckCircle, Users, Loader2, AlertT
 import { formatCurrency } from '../../utils/formatters';
 import { compressImage } from '../../utils/imageUtils';
 import { CameraCaptureModal } from './CameraCaptureModal';
+import { useModalClose } from '../../hooks/useModalClose';
 
 export function NewTransactionModal({
   customers,
@@ -19,6 +20,8 @@ export function NewTransactionModal({
   geminiLoading,
   error // Error prop from Dashboard.jsx
 }) {
+  useModalClose(() => setShowNewTransactionModal(false));
+
   const [localSearch, setLocalSearch] = useState('');
   const [wasteId, setWasteId] = useState(wasteTypes.length > 0 ? wasteTypes[0].id : '');
   const [weight, setWeight] = useState('');
@@ -70,7 +73,10 @@ export function NewTransactionModal({
   };
 
   return createPortal(
-    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-end md:items-center justify-center z-[100] animate-fadeIn md:p-6">
+    <div 
+      onClick={() => setShowNewTransactionModal(false)}
+      className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-end md:items-center justify-center z-[100] animate-fadeIn md:p-6"
+    >
       {/* Camera Capture Modal */}
       {showCameraModal && (
         <CameraCaptureModal
@@ -82,7 +88,10 @@ export function NewTransactionModal({
         />
       )}
 
-      <div className={`bg-white w-full md:max-w-6xl h-[100dvh] md:h-[90vh] md:rounded-[2.5rem] shadow-2xl flex flex-col ${isMobile ? '' : 'md:flex-row'} overflow-hidden animate-slideUp md:animate-fadeIn relative ${selectedCustomer && isMobile ? 'bg-slate-50' : ''}`}>
+      <div 
+        onClick={(e) => e.stopPropagation()}
+        className={`bg-white w-full md:max-w-6xl h-[100dvh] md:h-[90vh] md:rounded-[2.5rem] shadow-2xl flex flex-col ${isMobile ? '' : 'md:flex-row'} overflow-hidden animate-slideUp md:animate-fadeIn relative ${selectedCustomer && isMobile ? 'bg-slate-50' : ''}`}
+      >
 
         {/* Mobile Header when Customer is Selected */}
         {isMobile && selectedCustomer && (

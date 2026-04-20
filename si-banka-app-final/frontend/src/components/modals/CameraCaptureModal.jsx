@@ -1,7 +1,10 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { X, Camera, RefreshCcw, Check, User } from 'lucide-react';
+import { useModalClose } from '../../hooks/useModalClose';
 
 export function CameraCaptureModal({ onClose, onCapture }) {
+    useModalClose(onClose);
+
     const videoRef = useRef(null);
     const canvasRef = useRef(null);
     const [stream, setStream] = useState(null);
@@ -94,8 +97,14 @@ export function CameraCaptureModal({ onClose, onCapture }) {
     };
 
     return (
-        <div className="fixed inset-0 bg-black/90 z-[100] flex flex-col items-center justify-center p-4 animate-fadeIn">
-            <div className="relative w-full max-w-lg bg-black rounded-3xl overflow-hidden shadow-2xl border border-gray-800">
+        <div 
+            onClick={onClose}
+            className="fixed inset-0 bg-black/90 z-[100] flex flex-col items-center justify-center p-4 animate-fadeIn"
+        >
+            <div 
+                onClick={(e) => e.stopPropagation()}
+                className="relative w-full max-w-lg bg-black rounded-3xl overflow-hidden shadow-2xl border border-gray-800"
+            >
                 {/* Header */}
                 <div className="absolute top-0 left-0 right-0 p-4 flex justify-between items-center z-10 bg-gradient-to-b from-black/50 to-transparent">
                     <h3 className="text-white font-bold flex items-center gap-2"><Camera size={20} /> Ambil Foto</h3>

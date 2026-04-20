@@ -38,7 +38,10 @@ class BankSampahController extends Controller
                 ->get();
         }
 
-        return response()->json($bankSampah);
+        return response()->json([
+            'status' => 'success',
+            'data' => $bankSampah
+        ]);
     }
 
     /**

@@ -1,8 +1,11 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useState } from 'react';
 import { X, Check, Tag, Truck, Loader2 } from 'lucide-react';
+import { useModalClose } from '../../hooks/useModalClose';
 
 export function UpdatePriceModal({ item, onClose, onSave, updateLog, geminiLoading, error }) {
+  useModalClose(onClose);
+
   // Check mobile or short landscape
   const [isMobile, setIsMobile] = React.useState(window.innerWidth < 768 || window.innerHeight < 700);
 
@@ -27,8 +30,14 @@ export function UpdatePriceModal({ item, onClose, onSave, updateLog, geminiLoadi
   };
 
   return (
-    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-end md:items-center justify-center z-[100] animate-fadeIn p-4 md:p-0">
-      <div className={`bg-white w-full shadow-2xl overflow-hidden animate-slideUp md:animate-fadeIn relative flex flex-col md:flex-row ${!isMobile ? 'md:max-w-4xl md:rounded-3xl' : 'h-full rounded-none'}`}>
+    <div 
+        onClick={onClose}
+        className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-end md:items-center justify-center z-[100] animate-fadeIn p-4 md:p-0"
+    >
+      <div 
+        onClick={(e) => e.stopPropagation()}
+        className={`bg-white w-full shadow-2xl overflow-hidden animate-slideUp md:animate-fadeIn relative flex flex-col md:flex-row ${!isMobile ? 'md:max-w-4xl md:rounded-3xl' : 'h-full rounded-none'}`}
+      >
 
         {/* Close Button (Mobile Absolute) */}
         <button onClick={onClose} className="absolute right-4 top-4 md:hidden z-20 bg-gray-100 p-2 rounded-full text-gray-500 hover:bg-gray-200"><X size={20} /></button>
