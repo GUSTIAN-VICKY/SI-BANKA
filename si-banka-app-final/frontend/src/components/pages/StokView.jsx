@@ -45,8 +45,8 @@ export function StokView({ wasteTypes, updateLog, setItemToUpdateModal, handleDe
     const groupedWasteTypes = useMemo(() => {
         const groups = {};
         wasteTypes.forEach(item => {
-            const bankSampahId = item.bank_sampah_id || item.bankSampah?.id || 'unknown';
-            const bankSampahName = item.bankSampah?.name || item.bank_sampah?.name || 'Bank Sampah Tidak Diketahui';
+            const bankSampahId = item.bank_sampah_id || item.bankSampah?.id || 'master';
+            const bankSampahName = item.bankSampah?.name || item.bank_sampah?.name || 'Harga Master / Standar Sistem';
             const bankSampahLocation = item.bankSampah?.alamat || item.bank_sampah?.alamat ||
                 `RT ${item.bankSampah?.rt || item.bank_sampah?.rt || '-'}/RW ${item.bankSampah?.rw || item.bank_sampah?.rw || '-'}`;
 

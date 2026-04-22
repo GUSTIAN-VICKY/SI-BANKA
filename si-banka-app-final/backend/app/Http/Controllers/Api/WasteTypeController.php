@@ -21,12 +21,19 @@ class WasteTypeController extends Controller
         if ($user->canViewAllData()) {
             $wasteTypes = WasteType::with('bankSampah:id,name,rt,rw,alamat,kecamatan,kelurahan')->get();
         } else {
-            // Other users can only see their bank sampah's waste types
-            // Also include global waste types (bank_sampah_id is null)
-            $wasteTypes = WasteType::where(function ($query) use ($user) {
-                $query->where('bank_sampah_id', $user->bank_sampah_id)
-                      ->orWhereNull('bank_sampah_id');
-            })->get();
+            // Logic: Ambil data lokal Bank Sampah ini + data Global yang belum ada versi lokalnya
+            $local = WasteType::where('bank_sampah_id', $user->bank_sampah_id)->get();
+            $global = WasteType::whereNull('bank_sampah_id')->get();
+            
+            // Nama-nama yang sudah punya setting lokal
+            $localNames = $local->pluck('name')->toArray();
+            
+            // Filter global yang namanya belum ada di lokal
+            $filteredGlobal = $global->filter(function($g) use ($localNames) {
+                return !in_array($g->name, $localNames);
+            });
+            
+            $wasteTypes = $local->concat($filteredGlobal);
         }
         
         return response()->json([
@@ -107,6 +114,29 @@ class WasteTypeController extends Controller
                     'message' => 'Admin Kota hanya dapat melihat data, tidak dapat mengubah.'
                 ], 403);
             }
+            
+            // AUTO-CLONING LOGIC:
+            // Jika Admin RT mencoba mengubah data Global (null), 
+            // kita buatkan salinan lokal untuk mereka terlebih dahulu.
+            if ($wasteType->bank_sampah_id === null) {
+                // Cek apakah mereka sebenarnya sudah punya salinan lokal dengan nama ini (kasus edge)
+                $existingLocal = WasteType::where('name', $wasteType->name)
+                    ->where('bank_sampah_id', $user->bank_sampah_id)
+                    ->first();
+                    
+                if ($existingLocal) {
+                    $wasteType = $existingLocal;
+                } else {
+                    // Clone data global ke lokal
+                    $newLocal = $wasteType->replicate();
+                    $newLocal->id = (string) \Illuminate\Support\Str::uuid();
+                    $newLocal->bank_sampah_id = $user->bank_sampah_id;
+                    $newLocal->save();
+                    $wasteType = $newLocal;
+                }
+            }
+            
+            // Final check: Pastikan sekarang datanya milik bank sampah user
             if ($wasteType->bank_sampah_id !== $user->bank_sampah_id) {
                 return response()->json([
                     'status' => 'error',

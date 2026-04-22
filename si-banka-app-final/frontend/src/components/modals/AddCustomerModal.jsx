@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import { X, UserPlus, Loader2, Camera, Image as ImageIcon, Lock, CheckCircle, MapPin, Building2, ChevronDown, Sparkles, Shield, User } from 'lucide-react';
+import { X, UserPlus, Loader2, Camera, Image as ImageIcon, Lock, CheckCircle, MapPin, Building2, ChevronDown, Sparkles, Shield, User, AlertCircle } from 'lucide-react';
 import { CameraCaptureModal } from './CameraCaptureModal';
 import { compressImage } from '../../utils/imageUtils';
 import { useModalClose } from '../../hooks/useModalClose';
@@ -25,6 +25,7 @@ export function AddCustomerModal({ setShowAddCustomerModal, handleAddCustomer, g
     const [loadingBankSampah, setLoadingBankSampah] = useState(false);
 
     const isCityAdmin = currentUser && ['super_admin', 'super_admin_kota', 'admin_kota'].includes(currentUser.role);
+    const isRTAdmin = currentUser && ['super_admin_rt', 'admin_rt', 'admin'].includes(currentUser.role);
 
     // Fetch Bank Sampah list for city-level admins
     useEffect(() => {
@@ -41,26 +42,25 @@ export function AddCustomerModal({ setShowAddCustomerModal, handleAddCustomer, g
         }
     }, [isCityAdmin]);
 
-    // Auto-fill RT/RW and Alamat when Bank Sampah is selected
+    // Auto-fill RT/RW and Alamat when Bank Sampah is selected (City Admin)
     useEffect(() => {
         if (isCityAdmin && selectedBankSampah) {
             const selected = bankSampahList.find(b => b.id === selectedBankSampah);
             if (selected) {
                 setRt(selected.rt || '');
                 setRw(selected.rw || '');
-                // Auto-fill alamat from Bank Sampah
                 setAlamat(selected.alamat || '');
             }
         }
     }, [selectedBankSampah, bankSampahList, isCityAdmin]);
 
-    // Auto-fill RT/RW and Alamat for RT-level admins
+    // Auto-fill RT/RW and Alamat for RT-level admins from their own Bank Sampah
     useEffect(() => {
-        if (!isCityAdmin && currentUser?.bankSampah) {
-            setRt(currentUser.bankSampah.rt || '');
-            setRw(currentUser.bankSampah.rw || '');
-            // Auto-fill alamat from Bank Sampah
-            setAlamat(currentUser.bankSampah.alamat || '');
+        const bs = currentUser?.bank_sampah || currentUser?.bankSampah;
+        if (!isCityAdmin && bs) {
+            setRt(bs.rt || '');
+            setRw(bs.rw || '');
+            setAlamat(bs.alamat || '');
         }
     }, [currentUser, isCityAdmin]);
 
@@ -70,16 +70,17 @@ export function AddCustomerModal({ setShowAddCustomerModal, handleAddCustomer, g
             const compressed = await compressImage(file, 800, 0.7);
             setPhoto(compressed);
             setPreview(URL.createObjectURL(compressed));
-        } // eslint-disable-next-line no-unused-vars
-        catch (e) {
+        } catch (e) {
             setPhoto(file);
             setPreview(URL.createObjectURL(file));
         }
     };
 
     const handleSubmit = async () => {
+        const bs = currentUser?.bank_sampah || currentUser?.bankSampah;
         setLocalError(null);
         if (isCityAdmin && !selectedBankSampah) { setLocalError("Pilih Bank Sampah terlebih dahulu!"); return; }
+        if (isRTAdmin && !bs) { setLocalError("Akun Anda belum terhubung ke Bank Sampah manapun. Hubungi Admin Kota."); return; }
         if (!name || !rt || !rw) { setLocalError("Semua field (Nama, RT, RW) wajib diisi!"); return; }
         if (!password || password.length < 6) { setLocalError("Password wajib diisi (minimal 6 karakter)!"); return; }
 
@@ -94,8 +95,7 @@ export function AddCustomerModal({ setShowAddCustomerModal, handleAddCustomer, g
             } else if (!error) {
                 setShowAddCustomerModal(false);
             }
-        } // eslint-disable-next-line no-unused-vars
-        catch (e) { /* Error handled by parent */ }
+        } catch (e) { /* Error handled by parent */ }
     };
 
     useModalClose(() => setShowAddCustomerModal(false));
@@ -112,15 +112,13 @@ export function AddCustomerModal({ setShowAddCustomerModal, handleAddCustomer, g
                 />
             )}
 
-            {/* Modal Container - Fully Responsive */}
+            {/* Modal Container */}
             <div 
                 onClick={(e) => e.stopPropagation()}
                 className="bg-white w-full max-w-xl max-h-[95vh] sm:max-h-[90vh] rounded-3xl shadow-2xl flex flex-col overflow-hidden animate-slideUp relative"
             >
-
                 {/* Gradient Header */}
                 <div className="bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 p-5 sm:p-6 relative overflow-hidden flex-shrink-0 flex justify-between items-start">
-                    {/* Decorative Elements */}
                     <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none" />
                     <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/5 rounded-full translate-y-1/2 -translate-x-1/2 pointer-events-none" />
 
@@ -144,11 +142,19 @@ export function AddCustomerModal({ setShowAddCustomerModal, handleAddCustomer, g
                     >
                         <X size={20} />
                     </button>
-                </div >
+                </div>
 
                 {/* Scrollable Form Content */}
-                < div className="flex-1 overflow-y-auto p-4 sm:p-6 custom-scrollbar" >
+                <div className="flex-1 overflow-y-auto p-4 sm:p-6 custom-scrollbar">
                     <form onSubmit={(e) => { e.preventDefault(); handleSubmit(); }} className="space-y-4 sm:space-y-5">
+                        
+                        {/* Bank Sampah Status for RT Admin */}
+                        {isRTAdmin && !(currentUser?.bank_sampah || currentUser?.bankSampah) && (
+                            <div className="p-4 bg-amber-50 border border-amber-200 rounded-2xl flex items-center gap-3 text-amber-700 text-sm animate-pulse">
+                                <AlertCircle size={20} />
+                                <p><strong>Peringatan:</strong> Akun Anda belum terhubung ke Bank Sampah. Silakan hubungi Admin Kota.</p>
+                            </div>
+                        )}
 
                         {/* Bank Sampah Dropdown - City Admin Only */}
                         {isCityAdmin && (
@@ -177,7 +183,7 @@ export function AddCustomerModal({ setShowAddCustomerModal, handleAddCustomer, g
                             </div>
                         )}
 
-                        {/* Photo Upload Section - Compact */}
+                        {/* Photo Upload */}
                         <div className="flex items-center gap-4 p-4 bg-gradient-to-r from-slate-50 to-slate-100/50 rounded-2xl border border-slate-100">
                             <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-white border-2 border-slate-200 flex items-center justify-center overflow-hidden flex-shrink-0 shadow-sm">
                                 {preview ? (
@@ -190,22 +196,10 @@ export function AddCustomerModal({ setShowAddCustomerModal, handleAddCustomer, g
                                 <p className="text-sm font-bold text-slate-700 mb-2">Foto Profil</p>
                                 <div className="flex gap-2">
                                     {preview ? (
-                                        <button
-                                            type="button"
-                                            onClick={() => { setPhoto(null); setPreview(null); }}
-                                            className="text-xs font-bold text-red-500 bg-red-50 hover:bg-red-100 py-2 px-4 rounded-xl transition-colors"
-                                        >
-                                            Hapus
-                                        </button>
+                                        <button type="button" onClick={() => { setPhoto(null); setPreview(null); }} className="text-xs font-bold text-red-500 bg-red-50 hover:bg-red-100 py-2 px-4 rounded-xl transition-colors">Hapus</button>
                                     ) : (
                                         <>
-                                            <button
-                                                type="button"
-                                                onClick={() => setShowCameraModal(true)}
-                                                className="flex-1 bg-emerald-50 hover:bg-emerald-100 text-emerald-600 py-2 px-3 rounded-xl flex items-center justify-center gap-1.5 transition-colors text-xs font-bold"
-                                            >
-                                                <Camera size={14} /> Kamera
-                                            </button>
+                                            <button type="button" onClick={() => setShowCameraModal(true)} className="flex-1 bg-emerald-50 hover:bg-emerald-100 text-emerald-600 py-2 px-3 rounded-xl flex items-center justify-center gap-1.5 transition-colors text-xs font-bold"><Camera size={14} /> Kamera</button>
                                             <label className="flex-1 bg-blue-50 hover:bg-blue-100 text-blue-600 py-2 px-3 rounded-xl flex items-center justify-center gap-1.5 cursor-pointer transition-colors text-xs font-bold">
                                                 <ImageIcon size={14} /> Galeri
                                                 <input type="file" accept="image/*" onChange={(e) => handlePhotoSelect(e.target.files[0])} className="hidden" />
@@ -217,13 +211,16 @@ export function AddCustomerModal({ setShowAddCustomerModal, handleAddCustomer, g
                         </div>
 
                         {/* Nama Lengkap */}
-                        <div>
-                            <label className="text-sm font-bold text-slate-700 mb-2 block">Nama Lengkap</label>
+                        <div className="space-y-2">
+                            <label className="text-sm font-bold text-slate-700 flex items-center gap-2">
+                                <User size={16} className="text-emerald-500" />
+                                Nama Lengkap
+                            </label>
                             <input
                                 type="text"
                                 value={name}
                                 onChange={(e) => setName(e.target.value)}
-                                placeholder="Masukkan nama lengkap"
+                                placeholder="Penerima rekening nasabah baru"
                                 className="w-full px-4 py-3.5 border-2 border-slate-200 rounded-2xl focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/10 text-base font-semibold text-slate-700 outline-none transition-all placeholder:text-slate-400 placeholder:font-normal hover:border-slate-300"
                                 required
                             />
@@ -231,39 +228,36 @@ export function AddCustomerModal({ setShowAddCustomerModal, handleAddCustomer, g
 
                         {/* RT & RW Grid */}
                         <div className="grid grid-cols-2 gap-3">
-                            <div className="bg-slate-50 rounded-2xl p-3 sm:p-4 border border-slate-100">
-                                <label className="text-xs font-bold text-slate-500 mb-1 block">RT</label>
-                                <div className="text-2xl sm:text-3xl font-black text-slate-700 text-center">
-                                    {rt || '00'}
-                                </div>
-                                <p className="text-[10px] text-slate-400 text-center mt-1">Auto dari Bank Sampah</p>
+                            <div className="bg-slate-50 rounded-2xl p-4 border border-slate-100 flex flex-col items-center">
+                                <label className="text-xs font-bold text-slate-500 mb-1">RT</label>
+                                <div className="text-3xl font-black text-slate-700">{rt || '00'}</div>
+                                <p className="text-[10px] text-slate-400 mt-1 uppercase tracking-wider font-bold">Otomatis</p>
                             </div>
-                            <div className="bg-slate-50 rounded-2xl p-3 sm:p-4 border border-slate-100">
-                                <label className="text-xs font-bold text-slate-500 mb-1 block">RW</label>
-                                <div className="text-2xl sm:text-3xl font-black text-slate-700 text-center">
-                                    {rw || '00'}
-                                </div>
-                                <p className="text-[10px] text-slate-400 text-center mt-1">Auto dari Bank Sampah</p>
+                            <div className="bg-slate-50 rounded-2xl p-4 border border-slate-100 flex flex-col items-center">
+                                <label className="text-xs font-bold text-slate-500 mb-1">RW</label>
+                                <div className="text-3xl font-black text-slate-700">{rw || '00'}</div>
+                                <p className="text-[10px] text-slate-400 mt-1 uppercase tracking-wider font-bold">Otomatis</p>
                             </div>
                         </div>
 
-                        {/* Alamat - Auto from Bank Sampah */}
-                        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-4 border border-blue-100">
-                            <label className="text-xs font-bold text-blue-600 mb-2 flex items-center gap-2">
-                                <MapPin size={14} />
-                                Alamat Bank Sampah
-                            </label>
-                            <p className="text-sm font-semibold text-slate-700 min-h-[40px]">
-                                {alamat || <span className="text-slate-400 italic">Pilih Bank Sampah untuk melihat alamat</span>}
-                            </p>
-                            <p className="text-[10px] text-blue-500 mt-2">Alamat otomatis dari Bank Sampah yang dipilih</p>
+                        {/* Alamat */}
+                        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-4 border border-blue-100 flex items-start gap-4">
+                            <div className="p-2.5 bg-white rounded-xl shadow-sm text-blue-500 border border-blue-100/50">
+                                <MapPin size={22} />
+                            </div>
+                            <div className="flex-1">
+                                <p className="text-xs font-bold text-blue-600 mb-1">Alamat Penyetoran</p>
+                                <p className="text-sm font-semibold text-slate-700 leading-relaxed">
+                                    {alamat || <span className="text-slate-400 italic">Pilih Bank Sampah untuk melihat alamat</span>}
+                                </p>
+                            </div>
                         </div>
 
                         {/* Password */}
-                        <div>
-                            <label className="text-sm font-bold text-slate-700 mb-2 flex items-center gap-2">
-                                <Shield size={14} className="text-amber-500" />
-                                Password Akun
+                        <div className="space-y-2">
+                            <label className="text-sm font-bold text-slate-700 flex items-center gap-2">
+                                <Shield size={16} className="text-amber-500" />
+                                Password Akun Nasabah
                             </label>
                             <div className="relative group">
                                 <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-emerald-500 transition-colors" size={18} />
@@ -278,23 +272,7 @@ export function AddCustomerModal({ setShowAddCustomerModal, handleAddCustomer, g
                                     autoComplete="new-password"
                                 />
                             </div>
-                            <p className="text-xs text-slate-400 mt-1.5">Password untuk login nasabah ke aplikasi</p>
                         </div>
-
-                        {/* Bank Sampah Info for RT-level admins */}
-                        {!isCityAdmin && currentUser?.bankSampah && (
-                            <div className="p-4 bg-gradient-to-r from-emerald-50 to-teal-50 border border-emerald-200/50 rounded-2xl">
-                                <div className="flex items-center gap-3">
-                                    <div className="w-10 h-10 bg-emerald-500 rounded-xl flex items-center justify-center">
-                                        <Building2 size={18} className="text-white" />
-                                    </div>
-                                    <div>
-                                        <p className="text-xs font-bold text-emerald-600">Bank Sampah Anda</p>
-                                        <p className="text-sm font-bold text-emerald-800">{currentUser.bankSampah.name}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        )}
 
                         {/* Error Display */}
                         {(localError || error) && (
@@ -302,29 +280,29 @@ export function AddCustomerModal({ setShowAddCustomerModal, handleAddCustomer, g
                                 <div className="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0">
                                     <X size={16} />
                                 </div>
-                                <span>{localError || error}</span>
+                                <span className="flex-1">{localError || error}</span>
                             </div>
                         )}
                     </form>
-                </div >
+                </div>
 
-                {/* Fixed Bottom Submit Button */}
-                < div className="p-4 sm:p-5 border-t border-slate-100 bg-white flex-shrink-0" >
+                {/* Footer Submit Button */}
+                <div className="p-4 sm:p-6 border-t border-slate-100 bg-white">
                     <button
                         onClick={handleSubmit}
                         disabled={geminiLoading}
-                        className="w-full bg-gradient-to-r from-emerald-500 via-emerald-600 to-teal-600 text-white py-4 rounded-2xl font-bold text-base sm:text-lg hover:from-emerald-600 hover:via-emerald-700 hover:to-teal-700 transition-all shadow-lg hover:shadow-emerald-500/30 flex items-center justify-center gap-2 active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed group"
+                        className="w-full bg-gradient-to-r from-emerald-500 via-emerald-600 to-teal-600 text-white py-4 rounded-2xl font-black text-lg hover:from-emerald-600 hover:via-emerald-700 hover:to-teal-700 transition-all shadow-lg hover:shadow-emerald-500/30 flex items-center justify-center gap-2 active:scale-[0.98] disabled:opacity-70 disabled:grayscale group"
                     >
                         {geminiLoading ? (
-                            <Loader2 className="animate-spin" size={22} />
+                            <Loader2 className="animate-spin" size={24} />
                         ) : (
-                            <CheckCircle size={22} className="group-hover:scale-110 transition-transform" />
+                            <CheckCircle size={24} className="group-hover:scale-110 transition-transform" />
                         )}
                         {geminiLoading ? 'Menyimpan...' : 'Simpan Nasabah'}
                     </button>
-                </div >
-            </div >
-        </div >,
+                </div>
+            </div>
+        </div>,
         document.body
     );
-};
+}

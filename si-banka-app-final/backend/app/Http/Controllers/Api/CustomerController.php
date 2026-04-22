@@ -132,7 +132,7 @@ class CustomerController extends Controller
 
         return response()->json([
             'status' => 'success',
-            'data' => $customer,
+            'data' => $customer->load('bankSampah:id,name,rt,rw,alamat,kecamatan,kelurahan'),
             'user_account' => [
                 'username' => $user->username,
                 'message' => 'Akun nasabah berhasil dibuat. Login dengan username: ' . $user->username,
@@ -189,7 +189,7 @@ class CustomerController extends Controller
 
         return response()->json([
             'status' => 'success',
-            'data' => $customer,
+            'data' => $customer->load('bankSampah:id,name,rt,rw,alamat,kecamatan,kelurahan'),
         ]);
     }
 

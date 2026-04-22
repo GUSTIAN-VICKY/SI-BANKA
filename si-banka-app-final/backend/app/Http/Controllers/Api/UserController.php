@@ -72,6 +72,9 @@ class UserController extends Controller
             $user->photo_path = $path;
         }
 
+        // Admin-created users are auto-verified
+        $user->email_verified_at = now();
+
         $user->save();
 
         return response()->json(['message' => 'User created successfully', 'user' => $user], 201);
@@ -138,10 +141,12 @@ class UserController extends Controller
             $path = $request->file('photo')->store('profile-photos', 'public');
             $user->photo_path = $path;
         } elseif ($request->reset_photo == 'true') {
-             if ($user->photo_path && Storage::disk('public')->exists($user->photo_path)) {
-                Storage::disk('public')->delete($user->photo_path);
-            }
-            $user->photo_path = null;
+             $user->photo_path = null;
+        }
+
+        // Ensure user is verified if managed by admin
+        if (!$user->email_verified_at) {
+            $user->email_verified_at = now();
         }
 
         $user->save();

@@ -65,6 +65,7 @@ class AccountService
             'role' => User::ROLE_NASABAH,
             'customer_id' => $customer->id,
             'bank_sampah_id' => $bankSampahId ?? $customer->bank_sampah_id,
+            'email_verified_at' => now(),
         ]);
     }
 

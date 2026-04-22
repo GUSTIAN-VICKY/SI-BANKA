@@ -23,8 +23,8 @@ class AuthController extends Controller
             return response()->json(['message' => 'Invalid Credentials', 'errors' => $validator->errors()], 422);
         }
 
-        $loginField = $request->email;
-        $password = $request->password;
+        $loginField = trim($request->email);
+        $password = trim($request->password);
         
         // Cek apakah input adalah email atau username
         // Jika mengandung @, treat as email. Otherwise treat as username
@@ -49,6 +49,7 @@ class AuthController extends Controller
         }
 
         $token = $user->createToken('auth_token')->plainTextToken;
+        $user->load(['bankSampah', 'customer']);
 
         return response()->json([
             'message' => 'Login success',
@@ -68,10 +69,8 @@ class AuthController extends Controller
     {
         $user = $request->user();
         
-        // Jika user adalah nasabah, sertakan data customer
-        if ($user->isNasabah() && $user->customer_id) {
-            $user->load('customer');
-        }
+        // Eager load relations so frontend always has Bank Sampah / Customer data
+        $user->load(['bankSampah', 'customer']);
         
         return response()->json($user);
     }
