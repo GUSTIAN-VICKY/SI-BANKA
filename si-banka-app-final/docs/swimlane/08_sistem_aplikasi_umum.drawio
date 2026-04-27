@@ -1,114 +1,114 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mxfile host="app.diagrams.net" version="21.0.0">
   <diagram name="8. Alur Sistem Aplikasi" id="d8">
-    <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="1654" math="0" shadow="0">
       <root>
         <mxCell id="0"/><mxCell id="1" parent="0"/>
         
         <mxCell id="pool" value="&lt;b&gt;ALUR SISTEM APLIKASI (END-TO-END DARI LOGIN)&lt;/b&gt;" style="shape=pool;startSize=30;horizontal=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;fontSize=14;" vertex="1" parent="1">
-          <mxGeometry x="30" y="30" width="1600" height="750" as="geometry"/>
+          <mxGeometry x="30" y="30" width="1150" height="1200" as="geometry"/>
         </mxCell>
 
-        <!-- LANES -->
-        <mxCell id="L1" value="Aktor (Nasabah / Admin RT / Super Admin)" style="swimlane;startSize=30;horizontal=0;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=11;" vertex="1" parent="pool">
-          <mxGeometry y="30" width="1600" height="240" as="geometry"/>
+        <!-- LANES (Vertical / Portrait) -->
+        <mxCell id="L1" value="Aktor (Nasabah / Admin / Super Admin)" style="swimlane;startSize=30;horizontal=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=11;" vertex="1" parent="pool">
+          <mxGeometry y="30" width="350" height="1170" as="geometry"/>
         </mxCell>
-        <mxCell id="L2" value="Frontend Web (React UI)" style="swimlane;startSize=30;horizontal=0;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1;fontSize=11;" vertex="1" parent="pool">
-          <mxGeometry y="270" width="1600" height="240" as="geometry"/>
+        <mxCell id="L2" value="Frontend Web (React UI)" style="swimlane;startSize=30;horizontal=1;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1;fontSize=11;" vertex="1" parent="pool">
+          <mxGeometry x="350" y="30" width="400" height="1170" as="geometry"/>
         </mxCell>
-        <mxCell id="L3" value="Backend &amp; Database (Laravel + MySQL)" style="swimlane;startSize=30;horizontal=0;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;fontSize=11;" vertex="1" parent="pool">
-          <mxGeometry y="510" width="1600" height="240" as="geometry"/>
+        <mxCell id="L3" value="Backend &amp; Database (Laravel + MySQL)" style="swimlane;startSize=30;horizontal=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;fontSize=11;" vertex="1" parent="pool">
+          <mxGeometry x="750" y="30" width="400" height="1170" as="geometry"/>
         </mxCell>
 
         <!-- ===== L1: AKTOR ===== -->
         <mxCell id="a1" value="Mulai" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;" vertex="1" parent="L1">
-          <mxGeometry x="50" y="30" width="80" height="50" as="geometry"/>
+          <mxGeometry x="135" y="50" width="80" height="50" as="geometry"/>
         </mxCell>
         <mxCell id="a2" value="Buka Aplikasi&#xa;(Halaman Login)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="L1">
-          <mxGeometry x="170" y="30" width="120" height="50" as="geometry"/>
+          <mxGeometry x="115" y="140" width="120" height="50" as="geometry"/>
         </mxCell>
         <mxCell id="a3" value="Input Username/Email&#xa;&amp; Password" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="L1">
-          <mxGeometry x="330" y="30" width="140" height="50" as="geometry"/>
+          <mxGeometry x="105" y="230" width="140" height="50" as="geometry"/>
         </mxCell>
-        
         <mxCell id="a4" value="Melihat Dashboard&#xa;(Statistik, Saldo, Info)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="L1">
-          <mxGeometry x="690" y="30" width="130" height="50" as="geometry"/>
+          <mxGeometry x="110" y="410" width="130" height="50" as="geometry"/>
         </mxCell>
         <mxCell id="a5" value="Pilih Modul&#xa;Aplikasi?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="L1">
-          <mxGeometry x="880" y="15" width="100" height="80" as="geometry"/>
+          <mxGeometry x="125" y="500" width="100" height="80" as="geometry"/>
         </mxCell>
 
         <!-- Modul Pilihan Aktor -->
         <mxCell id="a_mod1" value="Modul Transaksi&#xa;(Admin)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="L1">
-          <mxGeometry x="1060" y="10" width="120" height="40" as="geometry"/>
+          <mxGeometry x="115" y="620" width="120" height="40" as="geometry"/>
         </mxCell>
         <mxCell id="a_mod2" value="Manajemen Nasabah&#xa;(Admin)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="L1">
-          <mxGeometry x="1060" y="60" width="120" height="40" as="geometry"/>
+          <mxGeometry x="115" y="700" width="120" height="40" as="geometry"/>
         </mxCell>
         <mxCell id="a_mod3" value="Harga &amp; Stok&#xa;(Admin)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="L1">
-          <mxGeometry x="1060" y="110" width="120" height="40" as="geometry"/>
+          <mxGeometry x="115" y="780" width="120" height="40" as="geometry"/>
         </mxCell>
         <mxCell id="a_mod4" value="Riwayat &amp; Saldo&#xa;(Nasabah)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="L1">
-          <mxGeometry x="1060" y="160" width="120" height="40" as="geometry"/>
+          <mxGeometry x="115" y="860" width="120" height="40" as="geometry"/>
         </mxCell>
 
         <mxCell id="a6" value="Klik Logout" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;" vertex="1" parent="L1">
-          <mxGeometry x="1400" y="30" width="100" height="50" as="geometry"/>
+          <mxGeometry x="125" y="980" width="100" height="50" as="geometry"/>
         </mxCell>
         <mxCell id="a_end" value="Selesai" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;" vertex="1" parent="L1">
-          <mxGeometry x="1540" y="35" width="50" height="40" as="geometry"/>
+          <mxGeometry x="150" y="1070" width="50" height="40" as="geometry"/>
         </mxCell>
+
 
         <!-- ===== L2: FRONTEND ===== -->
         <mxCell id="b1" value="Kirim Request Login&#xa;(POST /api/auth/login)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="L2">
-          <mxGeometry x="330" y="30" width="140" height="50" as="geometry"/>
+          <mxGeometry x="130" y="230" width="140" height="50" as="geometry"/>
         </mxCell>
         <mxCell id="b2" value="Simpan Token Auth&#xa;&amp; Cek Role User" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="L2">
-          <mxGeometry x="520" y="30" width="130" height="50" as="geometry"/>
+          <mxGeometry x="135" y="320" width="130" height="50" as="geometry"/>
         </mxCell>
         <mxCell id="b3" value="Arahkan ke Routing&#xa;Dashboard yang Sesuai" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="L2">
-          <mxGeometry x="690" y="30" width="130" height="50" as="geometry"/>
+          <mxGeometry x="135" y="410" width="130" height="50" as="geometry"/>
         </mxCell>
 
         <!-- Modul UI Frontend -->
         <mxCell id="b_mod1" value="Tampilkan Form Setoran&#xa;Validasi Item Sampah" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="L2">
-          <mxGeometry x="1220" y="10" width="130" height="40" as="geometry"/>
+          <mxGeometry x="135" y="620" width="130" height="40" as="geometry"/>
         </mxCell>
         <mxCell id="b_mod2" value="Tampilkan Form Nasabah&#xa;Validasi Data Diri" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="L2">
-          <mxGeometry x="1220" y="60" width="130" height="40" as="geometry"/>
+          <mxGeometry x="135" y="700" width="130" height="40" as="geometry"/>
         </mxCell>
         <mxCell id="b_mod3" value="Tampilkan Tabel Stok&#xa;&amp; Form Edit Harga" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="L2">
-          <mxGeometry x="1220" y="110" width="130" height="40" as="geometry"/>
+          <mxGeometry x="135" y="780" width="130" height="40" as="geometry"/>
         </mxCell>
         <mxCell id="b_mod4" value="Request Data Transaksi&#xa;Lalu Render Tabel" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="L2">
-          <mxGeometry x="1220" y="160" width="130" height="40" as="geometry"/>
+          <mxGeometry x="135" y="860" width="130" height="40" as="geometry"/>
         </mxCell>
 
         <mxCell id="b4" value="Hapus Token&#xa;dari localStorage" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="L2">
-          <mxGeometry x="1400" y="150" width="110" height="50" as="geometry"/>
+          <mxGeometry x="145" y="980" width="110" height="50" as="geometry"/>
         </mxCell>
 
 
         <!-- ===== L3: BACKEND & DATABASE ===== -->
         <mxCell id="c1" value="Validasi Kredensial&#xa;Cek Email Verified&#xa;Generate Bearer Token" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="L3">
-          <mxGeometry x="330" y="30" width="140" height="60" as="geometry"/>
+          <mxGeometry x="130" y="225" width="140" height="60" as="geometry"/>
         </mxCell>
         
         <mxCell id="c_mod1" value="DB Transaction:&#xa;Insert Transaksi, Log&#xa;Update Saldo &amp; Stok" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="L3">
-          <mxGeometry x="1220" y="10" width="130" height="45" as="geometry"/>
+          <mxGeometry x="135" y="617" width="130" height="45" as="geometry"/>
         </mxCell>
         <mxCell id="c_mod2" value="Insert Customer&#xa;Auto-create Akun User" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="L3">
-          <mxGeometry x="1220" y="65" width="130" height="40" as="geometry"/>
+          <mxGeometry x="135" y="700" width="130" height="40" as="geometry"/>
         </mxCell>
         <mxCell id="c_mod3" value="Update Harga&#xa;(Auto-clone jika Global)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="L3">
-          <mxGeometry x="1220" y="115" width="130" height="40" as="geometry"/>
+          <mxGeometry x="135" y="780" width="130" height="40" as="geometry"/>
         </mxCell>
         <mxCell id="c_mod4" value="Query Data Transaksi&#xa;WHERE user_id / tenant" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="L3">
-          <mxGeometry x="1220" y="165" width="130" height="40" as="geometry"/>
+          <mxGeometry x="135" y="860" width="130" height="40" as="geometry"/>
         </mxCell>
 
         <mxCell id="c2" value="Revoke Token&#xa;(POST /api/auth/logout)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="L3">
-          <mxGeometry x="1395" y="100" width="120" height="50" as="geometry"/>
+          <mxGeometry x="140" y="980" width="120" height="50" as="geometry"/>
         </mxCell>
 
 
@@ -116,18 +116,28 @@
         <!-- Login Flow -->
         <mxCell id="e1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;" edge="1" source="a1" target="a2" parent="L1"><mxGeometry relative="1" as="geometry"/></mxCell>
         <mxCell id="e2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;" edge="1" source="a2" target="a3" parent="L1"><mxGeometry relative="1" as="geometry"/></mxCell>
-        <mxCell id="e3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" source="a3" target="b1" parent="pool"><mxGeometry relative="1" as="geometry"/></mxCell>
-        <mxCell id="e4" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" source="b1" target="c1" parent="pool"><mxGeometry relative="1" as="geometry"/></mxCell>
-        <mxCell id="e5" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;exitX=1;exitY=0.5;entryX=0.5;entryY=1;" edge="1" source="c1" target="b2" parent="pool"><mxGeometry relative="1" as="geometry"/></mxCell>
+        
+        <!-- Cross-lane to Frontend -->
+        <mxCell id="e3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" source="a3" target="b1" parent="pool"><mxGeometry relative="1" as="geometry"/></mxCell>
+        
+        <!-- Cross-lane to Backend -->
+        <mxCell id="e4" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" source="b1" target="c1" parent="pool"><mxGeometry relative="1" as="geometry"/></mxCell>
+        
+        <!-- Backend back to Frontend -->
+        <mxCell id="e5" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" source="c1" target="b2" parent="pool"><mxGeometry relative="1" as="geometry"/></mxCell>
+        
         <mxCell id="e6" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;" edge="1" source="b2" target="b3" parent="L2"><mxGeometry relative="1" as="geometry"/></mxCell>
-        <mxCell id="e7" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;exitX=0.5;exitY=0;entryX=0.5;entryY=1;" edge="1" source="b3" target="a4" parent="pool"><mxGeometry relative="1" as="geometry"/></mxCell>
+        
+        <!-- Frontend back to Aktor (Dashboard) -->
+        <mxCell id="e7" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;exitX=0;exitY=0.5;entryX=1;entryY=0.5;" edge="1" source="b3" target="a4" parent="pool"><mxGeometry relative="1" as="geometry"/></mxCell>
+        
         <mxCell id="e8" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;" edge="1" source="a4" target="a5" parent="L1"><mxGeometry relative="1" as="geometry"/></mxCell>
         
-        <!-- Module Routing -->
-        <mxCell id="em1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" source="a5" target="a_mod1" parent="L1"><mxGeometry relative="1" as="geometry"/></mxCell>
-        <mxCell id="em2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;exitX=0.5;exitY=1;entryX=0;entryY=0.5;" edge="1" source="a5" target="a_mod2" parent="L1"><mxGeometry relative="1" as="geometry"/></mxCell>
-        <mxCell id="em3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;exitX=0.5;exitY=1;entryX=0;entryY=0.5;" edge="1" source="a5" target="a_mod3" parent="L1"><mxGeometry relative="1" as="geometry"/></mxCell>
-        <mxCell id="em4" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;exitX=0.5;exitY=1;entryX=0;entryY=0.5;" edge="1" source="a5" target="a_mod4" parent="L1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <!-- Module Routing (Fan out from A5) -->
+        <mxCell id="em1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" source="a5" target="a_mod1" parent="L1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="em2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;exitX=0;exitY=0.5;entryX=0;entryY=0.5;" edge="1" source="a5" target="a_mod2" parent="L1"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="80" y="540"/><mxPoint x="80" y="720"/></Array></mxGeometry></mxCell>
+        <mxCell id="em3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;exitX=0;exitY=0.5;entryX=0;entryY=0.5;" edge="1" source="a5" target="a_mod3" parent="L1"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="60" y="540"/><mxPoint x="60" y="800"/></Array></mxGeometry></mxCell>
+        <mxCell id="em4" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;exitX=0;exitY=0.5;entryX=0;entryY=0.5;" edge="1" source="a5" target="a_mod4" parent="L1"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="40" y="540"/><mxPoint x="40" y="880"/></Array></mxGeometry></mxCell>
         
         <!-- Modul to Frontend -->
         <mxCell id="emf1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" source="a_mod1" target="b_mod1" parent="pool"><mxGeometry relative="1" as="geometry"/></mxCell>
@@ -136,21 +146,22 @@
         <mxCell id="emf4" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" source="a_mod4" target="b_mod4" parent="pool"><mxGeometry relative="1" as="geometry"/></mxCell>
 
         <!-- Frontend to Backend -->
-        <mxCell id="emb1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" source="b_mod1" target="c_mod1" parent="pool"><mxGeometry relative="1" as="geometry"/></mxCell>
-        <mxCell id="emb2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" source="b_mod2" target="c_mod2" parent="pool"><mxGeometry relative="1" as="geometry"/></mxCell>
-        <mxCell id="emb3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" source="b_mod3" target="c_mod3" parent="pool"><mxGeometry relative="1" as="geometry"/></mxCell>
-        <mxCell id="emb4" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" source="b_mod4" target="c_mod4" parent="pool"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="emb1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" source="b_mod1" target="c_mod1" parent="pool"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="emb2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" source="b_mod2" target="c_mod2" parent="pool"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="emb3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" source="b_mod3" target="c_mod3" parent="pool"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="emb4" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" source="b_mod4" target="c_mod4" parent="pool"><mxGeometry relative="1" as="geometry"/></mxCell>
 
-        <!-- To Logout (from any backend process or direct from actor) -->
-        <mxCell id="ex1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;exitX=1;exitY=0.5;entryX=0.5;entryY=1;" edge="1" source="c_mod1" target="a6" parent="pool"><mxGeometry relative="1" as="geometry"/></mxCell>
-        <mxCell id="ex2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;exitX=1;exitY=0.5;entryX=0.5;entryY=1;" edge="1" source="c_mod2" target="a6" parent="pool"><mxGeometry relative="1" as="geometry"/></mxCell>
-        <mxCell id="ex3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;exitX=1;exitY=0.5;entryX=0.5;entryY=1;" edge="1" source="c_mod3" target="a6" parent="pool"><mxGeometry relative="1" as="geometry"/></mxCell>
-        <mxCell id="ex4" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;exitX=1;exitY=0.5;entryX=0.5;entryY=1;" edge="1" source="c_mod4" target="a6" parent="pool"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <!-- To Logout (from any backend process down to a6) -->
+        <mxCell id="ex1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;exitX=1;exitY=0.5;entryX=1;entryY=0.5;" edge="1" source="c_mod1" target="a6" parent="pool"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1100" y="640"/><mxPoint x="1100" y="1005"/></Array></mxGeometry></mxCell>
+        <mxCell id="ex2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;exitX=1;exitY=0.5;entryX=1;entryY=0.5;" edge="1" source="c_mod2" target="a6" parent="pool"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1080" y="720"/><mxPoint x="1080" y="1005"/></Array></mxGeometry></mxCell>
+        <mxCell id="ex3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;exitX=1;exitY=0.5;entryX=1;entryY=0.5;" edge="1" source="c_mod3" target="a6" parent="pool"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1060" y="800"/><mxPoint x="1060" y="1005"/></Array></mxGeometry></mxCell>
+        <mxCell id="ex4" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;exitX=1;exitY=0.5;entryX=1;entryY=0.5;" edge="1" source="c_mod4" target="a6" parent="pool"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1040" y="880"/><mxPoint x="1040" y="1005"/></Array></mxGeometry></mxCell>
 
         <!-- Logout Flow -->
-        <mxCell id="e_out1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" source="a6" target="b4" parent="pool"><mxGeometry relative="1" as="geometry"/></mxCell>
-        <mxCell id="e_out2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" source="b4" target="c2" parent="pool"><mxGeometry relative="1" as="geometry"/></mxCell>
-        <mxCell id="e_out3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;exitX=1;exitY=0.5;entryX=0.5;entryY=1;" edge="1" source="c2" target="a_end" parent="pool"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e_out1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" source="a6" target="b4" parent="pool"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e_out2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" source="b4" target="c2" parent="pool"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e_out3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" source="c2" target="a_end" parent="pool"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="950" y="1050"/><mxPoint x="175" y="1050"/></Array></mxGeometry></mxCell>
+
       </root>
     </mxGraphModel>
   </diagram>
