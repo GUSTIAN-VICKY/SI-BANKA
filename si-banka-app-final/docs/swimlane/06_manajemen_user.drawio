@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" version="21.0.0">
+  <diagram name="6. Manajemen User" id="d6">
+    <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/><mxCell id="1" parent="0"/>
+        <mxCell id="pool" value="&lt;b&gt;ALUR MANAJEMEN USER (CRUD) — HANYA SUPER ADMIN&lt;/b&gt;" style="shape=pool;startSize=30;horizontal=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="30" y="30" width="1600" height="570" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="L1" value="Super Admin (Kota / RT)" style="swimlane;startSize=30;horizontal=0;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=11;" vertex="1" parent="pool">
+          <mxGeometry y="30" width="1600" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="L2" value="Sistem (UserController)" style="swimlane;startSize=30;horizontal=0;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;fontSize=11;" vertex="1" parent="pool">
+          <mxGeometry y="180" width="1600" height="250" as="geometry"/>
+        </mxCell>
+        <mxCell id="L3" value="Database" style="swimlane;startSize=30;horizontal=0;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=11;" vertex="1" parent="pool">
+          <mxGeometry y="430" width="1600" height="110" as="geometry"/>
+        </mxCell>
+
+        <!-- L1 -->
+        <mxCell id="a1" value="Mulai" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;" vertex="1" parent="L1">
+          <mxGeometry x="50" y="50" width="90" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="a2" value="Pilih Aksi:&#xa;Tambah / Edit / Hapus" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="L1">
+          <mxGeometry x="200" y="48" width="150" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="a3a" value="Isi Form User:&#xa;Nama, Email, Password, Role" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="L1">
+          <mxGeometry x="410" y="15" width="160" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="a3b" value="Edit Data User" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="L1">
+          <mxGeometry x="410" y="85" width="140" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="a3c" value="Konfirmasi Hapus User" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;" vertex="1" parent="L1">
+          <mxGeometry x="410" y="138" width="150" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="a_end" value="Selesai" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;" vertex="1" parent="L1">
+          <mxGeometry x="1510" y="55" width="80" height="45" as="geometry"/>
+        </mxCell>
+
+        <!-- L2: Sistem -->
+        <mxCell id="b0" value="canManageUsers()?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="L2">
+          <mxGeometry x="410" y="75" width="130" height="85" as="geometry"/>
+        </mxCell>
+        <mxCell id="b0e" value="Return 403&#xa;Unauthorized" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;" vertex="1" parent="L2">
+          <mxGeometry x="410" y="175" width="130" height="45" as="geometry"/>
+        </mxCell>
+
+        <!-- Tambah -->
+        <mxCell id="b1" value="POST /api/users&#xa;Validasi (nama,email,password)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="L2">
+          <mxGeometry x="600" y="30" width="170" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="b1a" value="Buat User&#xa;email_verified_at = now()" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="L2">
+          <mxGeometry x="830" y="30" width="160" height="55" as="geometry"/>
+        </mxCell>
+
+        <!-- Edit -->
+        <mxCell id="b2" value="PATCH /api/users/{id}&#xa;Update data" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="L2">
+          <mxGeometry x="600" y="105" width="160" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="b2a" value="Update: role, password,&#xa;foto, customer_id" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="L2">
+          <mxGeometry x="830" y="105" width="160" height="55" as="geometry"/>
+        </mxCell>
+
+        <!-- Hapus -->
+        <mxCell id="b3" value="DELETE /api/users/{id}&#xa;Hapus diri sendiri?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="L2">
+          <mxGeometry x="600" y="170" width="150" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="b3e" value="Return 403&#xa;Tidak bisa hapus diri" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;" vertex="1" parent="L2">
+          <mxGeometry x="600" y="200" width="140" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="b4" value="Satu-satunya&#xa;Super Admin RT?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="L2">
+          <mxGeometry x="830" y="165" width="150" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="b4y" value="Hapus juga&#xa;Bank Sampah" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;" vertex="1" parent="L2">
+          <mxGeometry x="1040" y="165" width="130" height="50" as="geometry"/>
+        </mxCell>
+
+        <!-- Final -->
+        <mxCell id="b_fin" value="Hapus User&#xa;+ Hapus Foto" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="L2">
+          <mxGeometry x="1230" y="95" width="140" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="b_ret" value="Return 200/201&#xa;Sukses" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="L2">
+          <mxGeometry x="1430" y="100" width="130" height="55" as="geometry"/>
+        </mxCell>
+
+        <!-- L3: DB -->
+        <mxCell id="d1" value="INSERT / UPDATE / DELETE users" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;" vertex="1" parent="L3">
+          <mxGeometry x="1230" y="30" width="200" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="d2" value="DELETE bank_sampah&#xa;(jika last admin dihapus)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;" vertex="1" parent="L3">
+          <mxGeometry x="1040" y="25" width="170" height="55" as="geometry"/>
+        </mxCell>
+
+        <!-- EDGES -->
+        <mxCell id="e1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;" edge="1" source="a1" target="a2" parent="L1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e2a" value="Tambah" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;exitX=1;exitY=0.2;entryX=0;entryY=0.5;" edge="1" source="a2" target="a3a" parent="L1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e2b" value="Edit" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;" edge="1" source="a2" target="a3b" parent="L1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e2c" value="Hapus" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;exitX=1;exitY=0.8;entryX=0;entryY=0.5;" edge="1" source="a2" target="a3c" parent="L1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e3a" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" source="a3a" target="b0" parent="pool"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e3b" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" source="a3b" target="b0" parent="pool"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e3c" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" source="a3c" target="b0" parent="pool"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e4n" value="Tidak" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" source="b0" target="b0e" parent="L2"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e4a" value="Ya (Tambah)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;exitX=1;exitY=0.25;entryX=0;entryY=0.5;" edge="1" source="b0" target="b1" parent="L2"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e4b" value="Ya (Edit)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" source="b0" target="b2" parent="L2"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e4c" value="Ya (Hapus)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;exitX=1;exitY=0.75;entryX=0;entryY=0.5;" edge="1" source="b0" target="b3" parent="L2"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e5a" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;" edge="1" source="b1" target="b1a" parent="L2"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e5b" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;" edge="1" source="b2" target="b2a" parent="L2"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e6n" value="Tidak (self)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" source="b3" target="b3e" parent="L2"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e6y" value="Tidak (other)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;" edge="1" source="b3" target="b4" parent="L2"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e7y" value="Ya" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;" edge="1" source="b4" target="b4y" parent="L2"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e7db" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" source="b4y" target="d2" parent="pool"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e8a" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;" edge="1" source="b1a" target="b_fin" parent="L2"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e8b" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;" edge="1" source="b2a" target="b_fin" parent="L2"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e8c" value="Tidak" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;" edge="1" source="b4" target="b_fin" parent="L2"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e8d" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;" edge="1" source="b4y" target="b_fin" parent="L2"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e9" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" source="b_fin" target="d1" parent="pool"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e10" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;" edge="1" source="b_fin" target="b_ret" parent="L2"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e11" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;exitX=0.5;exitY=0;entryX=0.5;entryY=1;" edge="1" source="b_ret" target="a_end" parent="pool"><mxGeometry relative="1" as="geometry"/></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

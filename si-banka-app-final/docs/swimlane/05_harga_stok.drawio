@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" version="21.0.0">
+  <diagram name="5. Manajemen Harga &amp; Stok" id="d5">
+    <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/><mxCell id="1" parent="0"/>
+        <mxCell id="pool" value="&lt;b&gt;ALUR MANAJEMEN HARGA &amp;amp; STOK SAMPAH (MULTI-TENANT AUTO-CLONE)&lt;/b&gt;" style="shape=pool;startSize=30;horizontal=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="30" y="30" width="1600" height="720" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="L1" value="Admin RT" style="swimlane;startSize=30;horizontal=0;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=11;" vertex="1" parent="pool">
+          <mxGeometry y="30" width="1600" height="130" as="geometry"/>
+        </mxCell>
+        <mxCell id="L2" value="Super Admin RT" style="swimlane;startSize=30;horizontal=0;fillColor=#ffe6cc;strokeColor=#d79b00;fontStyle=1;fontSize=11;" vertex="1" parent="pool">
+          <mxGeometry y="160" width="1600" height="130" as="geometry"/>
+        </mxCell>
+        <mxCell id="L3" value="Super Admin Kota" style="swimlane;startSize=30;horizontal=0;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=11;" vertex="1" parent="pool">
+          <mxGeometry y="290" width="1600" height="130" as="geometry"/>
+        </mxCell>
+        <mxCell id="L4" value="Sistem (WasteTypeController)" style="swimlane;startSize=30;horizontal=0;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;fontSize=11;" vertex="1" parent="pool">
+          <mxGeometry y="420" width="1600" height="210" as="geometry"/>
+        </mxCell>
+        <mxCell id="L5" value="Database + UpdateLog" style="swimlane;startSize=30;horizontal=0;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1;fontSize=11;" vertex="1" parent="pool">
+          <mxGeometry y="630" width="1600" height="90" as="geometry"/>
+        </mxCell>
+
+        <!-- L1: Admin RT -->
+        <mxCell id="a1" value="Buka Halaman Stok" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="L1">
+          <mxGeometry x="200" y="38" width="150" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="a2" value="Klik Update Harga&#xa;pada WasteType" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="L1">
+          <mxGeometry x="410" y="38" width="150" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="a3" value="Input Harga Baru&#xa;→ Submit" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="L1">
+          <mxGeometry x="620" y="38" width="140" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="a_ok" value="Harga Lokal Berhasil&#xa;Diperbarui" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="L1">
+          <mxGeometry x="1440" y="38" width="150" height="55" as="geometry"/>
+        </mxCell>
+
+        <!-- L2: Super Admin RT -->
+        <mxCell id="b1" value="Klik Update Harga /&#xa;Tambah Jenis Sampah" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=11;" vertex="1" parent="L2">
+          <mxGeometry x="410" y="38" width="160" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="b2" value="Input Data Baru → Submit" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=11;" vertex="1" parent="L2">
+          <mxGeometry x="630" y="40" width="160" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="b_ok" value="Berhasil" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=11;" vertex="1" parent="L2">
+          <mxGeometry x="1440" y="40" width="130" height="50" as="geometry"/>
+        </mxCell>
+
+        <!-- L3: Super Admin Kota -->
+        <mxCell id="c1" value="Kelola Semua WasteType&#xa;(Global &amp; Lokal)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;" vertex="1" parent="L3">
+          <mxGeometry x="410" y="38" width="160" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="c2" value="Update / Delete / Tambah&#xa;→ Submit" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;" vertex="1" parent="L3">
+          <mxGeometry x="630" y="40" width="160" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="c_ok" value="Berhasil&#xa;(Tanpa Batasan)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;" vertex="1" parent="L3">
+          <mxGeometry x="1440" y="40" width="130" height="50" as="geometry"/>
+        </mxCell>
+
+        <!-- L4: Sistem -->
+        <mxCell id="d0" value="PATCH /api/waste-types/{id}&#xa;Cek Role User" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="L4">
+          <mxGeometry x="620" y="65" width="160" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="d1" value="isNasabah?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="L4">
+          <mxGeometry x="840" y="58" width="100" height="75" as="geometry"/>
+        </mxCell>
+        <mxCell id="d1e" value="Return 403" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;" vertex="1" parent="L4">
+          <mxGeometry x="840" y="148" width="100" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="d2" value="isAdminKota?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="L4">
+          <mxGeometry x="1000" y="55" width="110" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="d2e" value="Return 403&#xa;View Only" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;" vertex="1" parent="L4">
+          <mxGeometry x="1000" y="150" width="110" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="d3" value="WasteType Global?&#xa;(bank_sampah_id = null)" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="L4">
+          <mxGeometry x="1170" y="50" width="140" height="90" as="geometry"/>
+        </mxCell>
+        <mxCell id="d3y" value="AUTO-CLONE:&#xa;Sudah ada lokal? → Pakai lokal&#xa;Belum ada? → replicate()&#xa;+ set bank_sampah_id lokal" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;fontStyle=1;" vertex="1" parent="L4">
+          <mxGeometry x="1170" y="155" width="160" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="d4" value="Ownership&#xa;bank_sampah_id&#xa;Sama?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="L4">
+          <mxGeometry x="1385" y="50" width="120" height="95" as="geometry"/>
+        </mxCell>
+        <mxCell id="d4e" value="Return 403" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;" vertex="1" parent="L4">
+          <mxGeometry x="1385" y="160" width="100" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="d5" value="UPDATE waste_types&#xa;+ Log UpdateLog&#xa;(jika harga berubah)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="L4">
+          <mxGeometry x="1530" y="62" width="60" height="80" as="geometry"/>
+        </mxCell>
+
+        <!-- L5: DB -->
+        <mxCell id="e1_db" value="INSERT waste_types (clone) / UPDATE waste_types / INSERT update_logs" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="L5">
+          <mxGeometry x="1170" y="20" width="320" height="50" as="geometry"/>
+        </mxCell>
+
+        <!-- EDGES -->
+        <mxCell id="ea1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;" edge="1" source="a1" target="a2" parent="L1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="ea2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;" edge="1" source="a2" target="a3" parent="L1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="ea3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" source="a3" target="d0" parent="pool"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="eb1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;" edge="1" source="b1" target="b2" parent="L2"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="eb2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" source="b2" target="d0" parent="pool"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="ec1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;" edge="1" source="c1" target="c2" parent="L3"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="ec2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" source="c2" target="d0" parent="pool"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="ed1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;" edge="1" source="d0" target="d1" parent="L4"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="ed2y" value="Ya" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" source="d1" target="d1e" parent="L4"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="ed2n" value="Tidak" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;" edge="1" source="d1" target="d2" parent="L4"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="ed3y" value="Ya" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" source="d2" target="d2e" parent="L4"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="ed3n" value="Tidak" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;" edge="1" source="d2" target="d3" parent="L4"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="ed4y" value="Ya (global)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" source="d3" target="d3y" parent="L4"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="ed4n" value="Tidak (lokal)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;" edge="1" source="d3" target="d4" parent="L4"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="ed4c" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;" edge="1" source="d3y" target="d4" parent="L4"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="ed5n" value="Tidak" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" source="d4" target="d4e" parent="L4"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="ed5y" value="Ya" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;" edge="1" source="d4" target="d5" parent="L4"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="ed6" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" source="d5" target="e1_db" parent="pool"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <!-- Return success cross-lane -->
+        <mxCell id="ed7a" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;exitX=0.5;exitY=0;entryX=0.5;entryY=1;" edge="1" source="d5" target="a_ok" parent="pool"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="ed7b" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;exitX=0.5;exitY=0;entryX=0.5;entryY=1;" edge="1" source="d5" target="b_ok" parent="pool"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="ed7c" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;exitX=0.5;exitY=0;entryX=0.5;entryY=1;" edge="1" source="d5" target="c_ok" parent="pool"><mxGeometry relative="1" as="geometry"/></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

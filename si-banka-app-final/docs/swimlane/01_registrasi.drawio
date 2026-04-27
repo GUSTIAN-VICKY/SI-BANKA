@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" version="21.0.0">
+  <diagram name="1. Registrasi &amp; Verifikasi Email" id="reg">
+    <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- POOL -->
+        <mxCell id="pool" value="Alur Registrasi &amp; Verifikasi Email" style="shape=pool;startSize=30;horizontal=1;childLayout=stackLayout;horizontalStack=0;resizeParent=1;resizeParentMax=0;collapsible=0;marginBottom=0;swimlaneHead=0;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;fontStyle=1;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="40" y="40" width="1580" height="540" as="geometry" />
+        </mxCell>
+
+        <!-- LANE 1: Admin RT -->
+        <mxCell id="L1" value="Admin RT (Pendaftar)" style="swimlane;startSize=30;horizontal=0;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;" vertex="1" parent="pool">
+          <mxGeometry y="30" width="1580" height="160" as="geometry" />
+        </mxCell>
+
+        <!-- LANE 2: Sistem Backend -->
+        <mxCell id="L2" value="Sistem (Backend Laravel)" style="swimlane;startSize=30;horizontal=0;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;" vertex="1" parent="pool">
+          <mxGeometry y="190" width="1580" height="175" as="geometry" />
+        </mxCell>
+
+        <!-- LANE 3: Email Server -->
+        <mxCell id="L3" value="Email Server" style="swimlane;startSize=30;horizontal=0;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;" vertex="1" parent="pool">
+          <mxGeometry y="365" width="1580" height="145" as="geometry" />
+        </mxCell>
+
+        <!-- ===== SHAPES LANE 1 ===== -->
+        <mxCell id="s1" value="Mulai" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;" vertex="1" parent="L1">
+          <mxGeometry x="40" y="60" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="s2" value="Buka Halaman Register" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="L1">
+          <mxGeometry x="170" y="55" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="s3" value="Isi Form&#xa;(Nama, Email, Password,&#xa;Nama Bank Sampah,&#xa;RT/RW/Kelurahan/Kota)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="L1">
+          <mxGeometry x="380" y="40" width="170" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="s4" value="Klik Submit" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="L1">
+          <mxGeometry x="610" y="55" width="120" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="s4b" value="Terima Pesan:&#xa;'Cek Email Anda'" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="L1">
+          <mxGeometry x="1050" y="55" width="140" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="s4c" value="Klik Link Verifikasi&#xa;di Email" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="L1">
+          <mxGeometry x="1260" y="55" width="140" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="s_end" value="Selesai&#xa;(Bisa Login)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;" vertex="1" parent="L1">
+          <mxGeometry x="1470" y="60" width="90" height="40" as="geometry" />
+        </mxCell>
+
+        <!-- ===== SHAPES LANE 2 ===== -->
+        <mxCell id="s5" value="POST /api/register&#xa;Validasi Input" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="L2">
+          <mxGeometry x="610" y="55" width="130" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="s6" value="Valid?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="L2">
+          <mxGeometry x="800" y="45" width="90" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="s6e" value="Return 422&#xa;Tampilkan Error" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="L2">
+          <mxGeometry x="800" y="125" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="s7" value="Cek Lokasi RT/RW&#xa;sudah terdaftar?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="L2">
+          <mxGeometry x="955" y="40" width="110" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="s7e" value="Return 422&#xa;Lokasi sudah ada" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="L2">
+          <mxGeometry x="955" y="125" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="s8" value="DB Transaction:&#xa;Buat Bank Sampah&#xa;+ Buat User (super_admin_rt)&#xa;+ Trigger Email Verification" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="L2">
+          <mxGeometry x="1130" y="40" width="180" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="s8b" value="Verifikasi Hash&#xa;Email Valid?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="L2">
+          <mxGeometry x="1370" y="40" width="110" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="s8e" value="Return 400&#xa;Link Tidak Valid" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="L2">
+          <mxGeometry x="1370" y="125" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="s9" value="markEmailAsVerified()&#xa;Tampilkan View Verified" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="L2">
+          <mxGeometry x="1480" y="55" width="80" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- ===== SHAPES LANE 3 ===== -->
+        <mxCell id="s10" value="Kirim Email Verifikasi&#xa;(Notification)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="L3">
+          <mxGeometry x="1130" y="50" width="160" height="50" as="geometry" />
+        </mxCell>
+
+        <!-- ===== EDGES ===== -->
+        <mxCell id="e1" edge="1" source="s1" target="s2" parent="L1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e2" edge="1" source="s2" target="s3" parent="L1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e3" edge="1" source="s3" target="s4" parent="L1"><mxGeometry relative="1" as="geometry" /></mxCell>
+
+        <!-- Cross-lane s4 -> s5 -->
+        <mxCell id="e4" edge="1" source="s4" target="s5" parent="pool"><mxGeometry relative="1" as="geometry" /></mxCell>
+
+        <mxCell id="e5" edge="1" source="s5" target="s6" parent="L2"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e6n" value="Tidak" edge="1" source="s6" target="s6e" parent="L2"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e6y" value="Ya" edge="1" source="s6" target="s7" parent="L2"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e7y" value="Sudah Ada" edge="1" source="s7" target="s7e" parent="L2"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e7n" value="Belum Ada" edge="1" source="s7" target="s8" parent="L2"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e8" edge="1" source="s8" target="s8b" parent="L2"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e8y" value="Valid" edge="1" source="s8b" target="s9" parent="L2"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e8en" value="Tidak Valid" edge="1" source="s8b" target="s8e" parent="L2"><mxGeometry relative="1" as="geometry" /></mxCell>
+
+        <!-- Cross-lane s8 -> s10 (Email) -->
+        <mxCell id="e9" edge="1" source="s8" target="s10" parent="pool"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <!-- Cross-lane s8 -> s4b (Admin RT terima pesan) -->
+        <mxCell id="e10" edge="1" source="s8" target="s4b" parent="pool"><mxGeometry relative="1" as="geometry" /></mxCell>
+
+        <mxCell id="e11" edge="1" source="s4b" target="s4c" parent="L1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <!-- Cross-lane s4c -> s8b (klik link -> verifikasi hash) -->
+        <mxCell id="e12" edge="1" source="s4c" target="s8b" parent="pool"><mxGeometry relative="1" as="geometry" /></mxCell>
+
+        <!-- Cross-lane s9 -> s_end -->
+        <mxCell id="e13" edge="1" source="s9" target="s_end" parent="pool"><mxGeometry relative="1" as="geometry" /></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

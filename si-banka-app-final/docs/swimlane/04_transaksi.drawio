@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" version="21.0.0">
+  <diagram name="4. Transaksi Setoran Sampah" id="d4">
+    <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/><mxCell id="1" parent="0"/>
+        <mxCell id="pool" value="&lt;b&gt;ALUR TRANSAKSI SETORAN SAMPAH (CREATE / UPDATE / DELETE)&lt;/b&gt;" style="shape=pool;startSize=30;horizontal=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="30" y="30" width="1600" height="710" as="geometry"/>
+        </mxCell>
+
+        <!-- LANES -->
+        <mxCell id="L1" value="Admin RT / Super Admin RT" style="swimlane;startSize=30;horizontal=0;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=11;" vertex="1" parent="pool">
+          <mxGeometry y="30" width="1600" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="L2" value="Sistem (TransactionController)" style="swimlane;startSize=30;horizontal=0;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;fontSize=11;" vertex="1" parent="pool">
+          <mxGeometry y="180" width="1600" height="190" as="geometry"/>
+        </mxCell>
+        <mxCell id="L3" value="BalanceService (Saldo Nasabah)" style="swimlane;startSize=30;horizontal=0;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=11;" vertex="1" parent="pool">
+          <mxGeometry y="370" width="1600" height="110" as="geometry"/>
+        </mxCell>
+        <mxCell id="L4" value="StockService (Stok Sampah)" style="swimlane;startSize=30;horizontal=0;fillColor=#ffe6cc;strokeColor=#d79b00;fontStyle=1;fontSize=11;" vertex="1" parent="pool">
+          <mxGeometry y="480" width="1600" height="110" as="geometry"/>
+        </mxCell>
+        <mxCell id="L5" value="TransactionLog (Audit Trail)" style="swimlane;startSize=30;horizontal=0;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;fontSize=11;" vertex="1" parent="pool">
+          <mxGeometry y="590" width="1600" height="90" as="geometry"/>
+        </mxCell>
+
+        <!-- L1 -->
+        <mxCell id="a1" value="Mulai" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;" vertex="1" parent="L1">
+          <mxGeometry x="50" y="50" width="90" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="a2" value="Pilih Nasabah" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="L1">
+          <mxGeometry x="200" y="48" width="140" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="a3" value="Input Item Sampah:&#xa;Jenis, Berat, Harga/kg&#xa;Tanggal + Upload Bukti" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="L1">
+          <mxGeometry x="400" y="38" width="170" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="a4" value="Submit Transaksi" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="L1">
+          <mxGeometry x="630" y="48" width="140" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="a5" value="Transaksi Berhasil&#xa;(Tampilkan Struk)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="L1">
+          <mxGeometry x="1480" y="48" width="110" height="55" as="geometry"/>
+        </mxCell>
+
+        <!-- L2 -->
+        <mxCell id="b1" value="POST /api/transactions&#xa;Cek Role Bukan Nasabah" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="L2">
+          <mxGeometry x="630" y="60" width="160" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="b2" value="Role =&#xa;Nasabah?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="L2">
+          <mxGeometry x="850" y="52" width="110" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="b2e" value="Return 403&#xa;Akses Ditolak" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;" vertex="1" parent="L2">
+          <mxGeometry x="850" y="148" width="120" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="b3" value="Nasabah milik&#xa;bank_sampah sama?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="L2">
+          <mxGeometry x="1020" y="48" width="130" height="90" as="geometry"/>
+        </mxCell>
+        <mxCell id="b3e" value="Return 403&#xa;Beda Tenant" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;" vertex="1" parent="L2">
+          <mxGeometry x="1020" y="153" width="120" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="b4" value="DB::transaction()&#xa;BEGIN" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;fontStyle=1;" vertex="1" parent="L2">
+          <mxGeometry x="1210" y="62" width="130" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="b5" value="Transaction::create()&#xa;Simpan + Upload Foto" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="L2">
+          <mxGeometry x="1400" y="58" width="150" height="65" as="geometry"/>
+        </mxCell>
+        <mxCell id="b6" value="COMMIT&#xa;Return 201" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;fontStyle=1;" vertex="1" parent="L2">
+          <mxGeometry x="1560" y="62" width="30" height="60" as="geometry"/>
+        </mxCell>
+
+        <!-- L3 -->
+        <mxCell id="c1" value="addBalance(customer, total, date)&#xa;customer.balance += total&#xa;customer.last_deposit = date" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;" vertex="1" parent="L3">
+          <mxGeometry x="1400" y="25" width="190" height="65" as="geometry"/>
+        </mxCell>
+
+        <!-- L4 -->
+        <mxCell id="d1" value="addStock(items)&#xa;Loop items: UPDATE waste_types&#xa;SET stok = stok + weight" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=11;" vertex="1" parent="L4">
+          <mxGeometry x="1400" y="20" width="190" height="65" as="geometry"/>
+        </mxCell>
+
+        <!-- L5 -->
+        <mxCell id="e1_log" value="INSERT transaction_logs (action=CREATE, user_id, details=JSON)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;" vertex="1" parent="L5">
+          <mxGeometry x="1400" y="18" width="190" height="55" as="geometry"/>
+        </mxCell>
+
+        <!-- EDGES -->
+        <mxCell id="e1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;" edge="1" source="a1" target="a2" parent="L1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;" edge="1" source="a2" target="a3" parent="L1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;" edge="1" source="a3" target="a4" parent="L1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e4" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" source="a4" target="b1" parent="pool"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e5" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;" edge="1" source="b1" target="b2" parent="L2"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e6y" value="Ya" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" source="b2" target="b2e" parent="L2"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e6n" value="Tidak" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;" edge="1" source="b2" target="b3" parent="L2"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e7n" value="Tidak" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" source="b3" target="b3e" parent="L2"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e7y" value="Ya" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;" edge="1" source="b3" target="b4" parent="L2"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e8" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;" edge="1" source="b4" target="b5" parent="L2"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <!-- b5 → BalanceService, StockService, Log (cross-lane, down) -->
+        <mxCell id="e9a" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" source="b5" target="c1" parent="pool"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e9b" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" source="b5" target="d1" parent="pool"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e9c" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" source="b5" target="e1_log" parent="pool"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e10" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;" edge="1" source="b5" target="b6" parent="L2"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e11" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;exitX=0.5;exitY=0;entryX=0.5;entryY=1;" edge="1" source="b6" target="a5" parent="pool"><mxGeometry relative="1" as="geometry"/></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
