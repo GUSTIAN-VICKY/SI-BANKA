@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" version="21.0.0">
+  <diagram name="9. Presentasi High Level" id="presentasi">
+    <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- Legend / Keterangan -->
+        <mxCell id="legend_box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#666666;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="50" width="250" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="legend_title" value="&lt;b&gt;Keterangan Warna&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="60" y="60" width="130" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="legend_user" value="Aksi Pengguna (Manusia)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="70" y="100" width="210" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="legend_system" value="Logika Otomatis Sistem (Aplikasi)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="70" y="140" width="210" height="30" as="geometry"/>
+        </mxCell>
+
+        <!-- Title -->
+        <mxCell id="title" value="&lt;font style=&quot;font-size: 24px;&quot;&gt;&lt;b&gt;ALUR BISNIS APLIKASI SI-BANKA&lt;/b&gt;&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="500" y="40" width="600" height="50" as="geometry"/>
+        </mxCell>
+
+        <!-- Level 1: Start & Login -->
+        <mxCell id="a_start" value="Mulai Buka Aplikasi" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="720" y="120" width="160" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="a_login" value="Login Multi-Role" style="rhombus;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="700" y="220" width="200" height="80" as="geometry"/>
+        </mxCell>
+
+        <!-- Level 2: Roles -->
+        <mxCell id="a_dashN" value="Dashboard Nasabah" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="250" y="350" width="200" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="a_dashA" value="Dashboard Admin RT" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="700" y="350" width="200" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="a_dashS" value="Dashboard Super Admin" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1150" y="350" width="200" height="60" as="geometry"/>
+        </mxCell>
+
+        <!-- Level 3: Actions -->
+        <!-- Nasabah -->
+        <mxCell id="a_cekSaldo" value="Pantau Saldo Tabungan&#xa;&amp; Riwayat Setoran" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="250" y="470" width="200" height="60" as="geometry"/>
+        </mxCell>
+
+        <!-- Admin RT -->
+        <mxCell id="a_daftar" value="Input Data Diri&#xa;Nasabah Baru" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="500" y="470" width="160" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="a_setor" value="Input Berat &amp;&#xa;Jenis Sampah Warga" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="720" y="470" width="160" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="a_harga" value="Ubah Harga Beli&#xa;Sampah di RT" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="940" y="470" width="160" height="60" as="geometry"/>
+        </mxCell>
+
+        <!-- Super Admin -->
+        <mxCell id="a_cabang" value="Registrasi Bank Sampah&#xa;RT Baru" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="1150" y="470" width="200" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="a_laporan" value="Pantau Pergerakan Saldo&#xa;&amp; Stok se-Kota" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="1390" y="470" width="200" height="60" as="geometry"/>
+        </mxCell>
+
+        <!-- Level 4: System Actions -->
+        <mxCell id="s_akun" value="Sistem Otomatis&#xa;Buatkan Akun Login" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="500" y="590" width="160" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="s_stok" value="Sistem Otomatis Tambah&#xa;Saldo &amp; Stok Gudang" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="720" y="590" width="160" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="s_clone" value="Sistem Auto-Clone Data&#xa;(Tanpa Ubah Harga Kota)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="940" y="590" width="160" height="60" as="geometry"/>
+        </mxCell>
+
+        <!-- Logout -->
+        <mxCell id="a_end" value="Selesai / Logout" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="720" y="730" width="160" height="60" as="geometry"/>
+        </mxCell>
+
+        <!-- Edges -->
+        <mxCell id="e1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;" edge="1" source="a_start" target="a_login" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        
+        <mxCell id="e2" value="Login Nasabah" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;" edge="1" source="a_login" target="a_dashN" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e3" value="Login Admin RT" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;" edge="1" source="a_login" target="a_dashA" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e4" value="Login Super Admin" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;" edge="1" source="a_login" target="a_dashS" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+        <mxCell id="e5" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;" edge="1" source="a_dashN" target="a_cekSaldo" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        
+        <mxCell id="e6" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;" edge="1" source="a_dashA" target="a_daftar" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e7" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;" edge="1" source="a_dashA" target="a_setor" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e8" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;" edge="1" source="a_dashA" target="a_harga" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+        <mxCell id="e9" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;" edge="1" source="a_dashS" target="a_cabang" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e10" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;" edge="1" source="a_dashS" target="a_laporan" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+        <mxCell id="e11" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;" edge="1" source="a_daftar" target="s_akun" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e12" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;" edge="1" source="a_setor" target="s_stok" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e13" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;" edge="1" source="a_harga" target="s_clone" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+        <mxCell id="e_end1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;" edge="1" source="a_cekSaldo" target="a_end" parent="1"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="350" y="760"/></Array></mxGeometry></mxCell>
+        <mxCell id="e_end2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;" edge="1" source="s_akun" target="a_end" parent="1"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="580" y="760"/></Array></mxGeometry></mxCell>
+        <mxCell id="e_end3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;" edge="1" source="s_stok" target="a_end" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e_end4" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;" edge="1" source="s_clone" target="a_end" parent="1"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1020" y="760"/></Array></mxGeometry></mxCell>
+        <mxCell id="e_end5" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;" edge="1" source="a_cabang" target="a_end" parent="1"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1250" y="760"/></Array></mxGeometry></mxCell>
+        <mxCell id="e_end6" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;" edge="1" source="a_laporan" target="a_end" parent="1"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1490" y="760"/></Array></mxGeometry></mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

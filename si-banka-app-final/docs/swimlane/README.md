@@ -17,6 +17,7 @@ Format: **Draw.io (`.drawio`)** — buka dengan [app.diagrams.net](https://app.d
 | 6 | `06_manajemen_user.drawio` | Manajemen Akun User (CRUD) | Super Admin, Sistem, DB |
 | 7 | `07_transfer_nasabah.drawio` | Transfer Nasabah Antar Bank Sampah | Super Admin Kota, Sistem, DB |
 | 8 | `08_sistem_aplikasi_umum.drawio` | Flowchart End-to-End Sistem Aplikasi Setelah Login | Aktor, Frontend, Backend & Database |
+| 9 | `09_presentasi_high_level.drawio` | Flowchart Bisnis (Cocok untuk presentasi dosen/pengguna) | Seluruh Role, Sistem |
 
 ---
 
