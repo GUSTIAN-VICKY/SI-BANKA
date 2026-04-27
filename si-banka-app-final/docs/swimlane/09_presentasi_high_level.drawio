@@ -13,16 +13,16 @@
 
         <!-- Independent Swimlanes (Columns) -->
         <mxCell id="L1" value="NASABAH" style="swimlane;startSize=30;horizontal=1;fillColor=#f5f5f5;strokeColor=#666666;fontStyle=1;fontSize=14;fontColor=#333333;" vertex="1" parent="1">
-          <mxGeometry x="50" y="80" width="220" height="740" as="geometry"/>
+          <mxGeometry x="50" y="80" width="220" height="840" as="geometry"/>
         </mxCell>
         <mxCell id="L2" value="ADMIN RT" style="swimlane;startSize=30;horizontal=1;fillColor=#f5f5f5;strokeColor=#666666;fontStyle=1;fontSize=14;fontColor=#333333;" vertex="1" parent="1">
-          <mxGeometry x="270" y="80" width="220" height="740" as="geometry"/>
+          <mxGeometry x="270" y="80" width="220" height="840" as="geometry"/>
         </mxCell>
         <mxCell id="L3" value="SISTEM APLIKASI (OTOMATIS)" style="swimlane;startSize=30;horizontal=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;fontSize=14;fontColor=#333333;" vertex="1" parent="1">
-          <mxGeometry x="490" y="80" width="260" height="740" as="geometry"/>
+          <mxGeometry x="490" y="80" width="260" height="840" as="geometry"/>
         </mxCell>
         <mxCell id="L4" value="SUPER ADMIN KOTA" style="swimlane;startSize=30;horizontal=1;fillColor=#f5f5f5;strokeColor=#666666;fontStyle=1;fontSize=14;fontColor=#333333;" vertex="1" parent="1">
-          <mxGeometry x="750" y="80" width="220" height="740" as="geometry"/>
+          <mxGeometry x="750" y="80" width="220" height="840" as="geometry"/>
         </mxCell>
 
         <!-- Logins (y=120) -->
@@ -48,62 +48,67 @@
         </mxCell>
 
         <!-- Row 1 (y=280) -->
-        <mxCell id="act_A1" value="Input Data Diri&#xa;Nasabah Baru" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#000000;" vertex="1" parent="1">
-          <mxGeometry x="305" y="280" width="150" height="50" as="geometry"/>
+        <mxCell id="act_N1" value="Pantau Saldo &amp;&#xa;Riwayat Tabungan" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="85" y="280" width="150" height="50" as="geometry"/>
         </mxCell>
 
         <!-- Row 2 (y=360) -->
-        <mxCell id="act_N1" value="Pantau Saldo &amp;&#xa;Riwayat Tabungan" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#000000;" vertex="1" parent="1">
-          <mxGeometry x="85" y="360" width="150" height="60" as="geometry"/>
-        </mxCell>
-        <mxCell id="sys_A1" value="Sistem Otomatis&#xa;Buatkan Akun Login" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;fontColor=#000000;" vertex="1" parent="1">
+        <mxCell id="sys_N1" value="Sistem Query Data Saldo&#xa;Secara Real-Time" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;fontColor=#000000;" vertex="1" parent="1">
           <mxGeometry x="520" y="360" width="200" height="50" as="geometry"/>
         </mxCell>
-        <mxCell id="act_S1" value="Registrasi Bank Sampah&#xa;RT Baru" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#000000;" vertex="1" parent="1">
-          <mxGeometry x="785" y="360" width="150" height="50" as="geometry"/>
+        <mxCell id="act_A1" value="Input Data Diri&#xa;Nasabah Baru" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="305" y="360" width="150" height="50" as="geometry"/>
         </mxCell>
 
         <!-- Row 3 (y=440) -->
-        <mxCell id="act_A2" value="Input Transaksi&#xa;Setoran Sampah" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#000000;" vertex="1" parent="1">
-          <mxGeometry x="305" y="440" width="150" height="50" as="geometry"/>
-        </mxCell>
-        <mxCell id="sys_S1" value="Sistem Siapkan Ruang&#xa;Database Tenant Baru" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;fontColor=#000000;" vertex="1" parent="1">
+        <mxCell id="sys_A1" value="Sistem Otomatis&#xa;Buatkan Akun Login" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;fontColor=#000000;" vertex="1" parent="1">
           <mxGeometry x="520" y="440" width="200" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="act_S1" value="Registrasi Bank Sampah&#xa;RT Baru" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="785" y="440" width="150" height="50" as="geometry"/>
         </mxCell>
 
         <!-- Row 4 (y=520) -->
-        <mxCell id="sys_A2" value="Sistem Otomatis Tambah&#xa;Saldo &amp; Stok Gudang" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;fontColor=#000000;" vertex="1" parent="1">
-          <mxGeometry x="520" y="520" width="200" height="50" as="geometry"/>
+        <mxCell id="act_A2" value="Input Transaksi&#xa;Setoran Sampah" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="305" y="520" width="150" height="50" as="geometry"/>
         </mxCell>
-        <mxCell id="act_S2" value="Transfer Nasabah&#xa;Pindah Domisili" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#000000;" vertex="1" parent="1">
-          <mxGeometry x="785" y="520" width="150" height="50" as="geometry"/>
+        <mxCell id="sys_S1" value="Sistem Siapkan Ruang&#xa;Database Tenant Baru" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;fontColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="520" y="520" width="200" height="50" as="geometry"/>
         </mxCell>
 
         <!-- Row 5 (y=600) -->
-        <mxCell id="act_A3" value="Ubah Harga Beli&#xa;Sampah di RT" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#000000;" vertex="1" parent="1">
-          <mxGeometry x="305" y="600" width="150" height="50" as="geometry"/>
-        </mxCell>
-        <mxCell id="sys_S2" value="Sistem Mutasi Data&#xa;Lintas Tenant" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;fontColor=#000000;" vertex="1" parent="1">
+        <mxCell id="sys_A2" value="Sistem Otomatis Tambah&#xa;Saldo &amp; Stok Gudang" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;fontColor=#000000;" vertex="1" parent="1">
           <mxGeometry x="520" y="600" width="200" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="act_S2" value="Transfer Nasabah&#xa;Pindah Domisili" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="785" y="600" width="150" height="50" as="geometry"/>
         </mxCell>
 
         <!-- Row 6 (y=680) -->
-        <mxCell id="sys_A3" value="Sistem Auto-Clone Data&#xa;(Harga Dasar Kota Aman)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;fontColor=#000000;" vertex="1" parent="1">
+        <mxCell id="act_A3" value="Ubah Harga Beli&#xa;Sampah di RT" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="305" y="680" width="150" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="sys_S2" value="Sistem Mutasi Data&#xa;Lintas Tenant" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;fontColor=#000000;" vertex="1" parent="1">
           <mxGeometry x="520" y="680" width="200" height="50" as="geometry"/>
         </mxCell>
+
+        <!-- Row 7 (y=760) -->
+        <mxCell id="sys_A3" value="Sistem Auto-Clone Data&#xa;(Harga Dasar Kota Aman)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;fontColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="520" y="760" width="200" height="50" as="geometry"/>
+        </mxCell>
         <mxCell id="act_S3" value="Pantau Pergerakan&#xa;Laporan Global" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#000000;" vertex="1" parent="1">
-          <mxGeometry x="785" y="680" width="150" height="50" as="geometry"/>
+          <mxGeometry x="785" y="760" width="150" height="50" as="geometry"/>
         </mxCell>
 
-        <!-- Logouts (y=760) -->
+        <!-- Logouts (y=840) -->
         <mxCell id="end_N" value="Logout" style="ellipse;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;fontColor=#000000;" vertex="1" parent="1">
-          <mxGeometry x="110" y="760" width="100" height="40" as="geometry"/>
+          <mxGeometry x="110" y="840" width="100" height="40" as="geometry"/>
         </mxCell>
         <mxCell id="end_A" value="Logout" style="ellipse;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;fontColor=#000000;" vertex="1" parent="1">
-          <mxGeometry x="330" y="760" width="100" height="40" as="geometry"/>
+          <mxGeometry x="330" y="840" width="100" height="40" as="geometry"/>
         </mxCell>
         <mxCell id="end_S" value="Logout" style="ellipse;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;fontColor=#000000;" vertex="1" parent="1">
-          <mxGeometry x="810" y="760" width="100" height="40" as="geometry"/>
+          <mxGeometry x="810" y="840" width="100" height="40" as="geometry"/>
         </mxCell>
 
         <!-- ================= EDGES (Orthogonal, Exit Bottom, Enter Top) ================= -->
@@ -115,7 +120,8 @@
 
         <!-- Nasabah Flow -->
         <mxCell id="e_dn1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" source="dash_N" target="act_N1" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
-        <mxCell id="e_nend" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" source="act_N1" target="end_N" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="ea_n1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" source="act_N1" target="sys_N1" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e_nend" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" source="sys_N1" target="end_N" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
 
         <!-- Admin RT Snake Flow -->
         <mxCell id="e_da1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" source="dash_A" target="act_A1" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
