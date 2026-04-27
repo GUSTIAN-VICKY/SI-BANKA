@@ -16,6 +16,7 @@ Format: **Draw.io (`.drawio`)** — buka dengan [app.diagrams.net](https://app.d
 | 5 | `05_harga_stok.drawio` | Update Harga & Stok dengan Auto-Clone Global→Lokal | Admin RT, Super Admin RT, Super Admin Kota, Sistem, DB |
 | 6 | `06_manajemen_user.drawio` | Manajemen Akun User (CRUD) | Super Admin, Sistem, DB |
 | 7 | `07_transfer_nasabah.drawio` | Transfer Nasabah Antar Bank Sampah | Super Admin Kota, Sistem, DB |
+| 8 | `08_sistem_aplikasi_umum.drawio` | Flowchart End-to-End Sistem Aplikasi Setelah Login | Aktor, Frontend, Backend & Database |
 
 ---
 
