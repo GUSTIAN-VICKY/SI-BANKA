@@ -1,0 +1,65 @@
+version: '3.8'
+
+services:
+  # 1. Database Service (PostgreSQL - sesuai dengan config local & Supabase)
+  db:
+    image: postgres:15-alpine
+    container_name: sibanka_db_local
+    restart: always
+    environment:
+      POSTGRES_DB: si_banka
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Gustian24
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - sibanka_network
+
+  # 2. Backend Service (Laravel API)
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.local
+    container_name: sibanka_backend_local
+    restart: always
+    ports:
+      - "8001:80" # Diarahkan ke port 8001 agar sesuai dengan proxy di vite.config.js
+    volumes:
+      - ./backend:/var/www/html
+    environment:
+      DB_CONNECTION: pgsql
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_DATABASE: si_banka
+      DB_USERNAME: postgres
+      DB_PASSWORD: Gustian24
+    depends_on:
+      - db
+    networks:
+      - sibanka_network
+
+  # 3. Frontend Service (React + Vite)
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.local
+    container_name: sibanka_frontend_local
+    restart: always
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules # Mencegah bentrokan node_modules local & container
+    depends_on:
+      - backend
+    networks:
+      - sibanka_network
+
+volumes:
+  postgres_data:
+
+networks:
+  sibanka_network:
+    driver: bridge
